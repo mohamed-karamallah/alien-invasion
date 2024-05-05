@@ -39,6 +39,7 @@ void HealUnit::heal()
 				}
 			}
 		}
+		i++;
 	}
 	while (i < AttackCapacity)
 	{
