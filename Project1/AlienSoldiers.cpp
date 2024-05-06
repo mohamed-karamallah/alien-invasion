@@ -4,19 +4,20 @@ AlienSoldiers::AlienSoldiers(int _ID, string type, int _health, int _power, int 
 {
 	gameptr = g; }
 
-void AlienSoldiers::attack(Unit*AS)
+void AlienSoldiers::attack()
 {
-	/*AlienSoldiers* AS = gameptr->getalien()->getAS();
+	AlienSoldiers* AS = gameptr->getalien()->getAS();
 
-	*/
+	
 	if (AS == nullptr) {
 		return;
 	}
-	std::cout << "AS " << AS->getAttackCapacity() << " shots [ ";
+	std::cout << "AS " << AS->getID() << " shots [ ";
 	LinkedQueue<EarthSoldiers*>templist;
+	EarthSoldiers* ES;
 	for (int i = 0; i < AS->getAttackCapacity(); i++)
 	{
-		EarthSoldiers* ES = gameptr->getearth()->getES();
+		 ES = gameptr->getearth()->getES();
 		if (ES == nullptr) {
 
 		}
@@ -25,16 +26,16 @@ void AlienSoldiers::attack(Unit*AS)
 			std::cout << ES->getID() << " , ";
 			ES->setOriginalH(ES->getHealth());
 			ES->settUML(gameptr->currenttimeStep);
-			ES->setDf(ES->getTa() - ES->getJoinTime());
+			
 			if (ES->getTa() == 0)
 			{
 				ES->setTa(gameptr->currenttimeStep);
 			}
-			
+			ES->setDf(ES->getTa() - ES->getJoinTime());
 			int damage = (AS->getPower() * AS->getHealth() / 100) / pow(ES->getHealth(), 0.5);
 			ES->setHealth(ES->getHealth() - damage);
 			if (ES->getHealth() <= 0) {
-				ES->setTd(ES->getTa());
+				ES->setTd(gameptr->currenttimeStep);
 				ES->setDd(ES->getTd() - ES->getTa());
 				ES->setDb(ES->getDf() + ES->getDd());
 				gameptr->addkilled(ES);
@@ -45,13 +46,17 @@ void AlienSoldiers::attack(Unit*AS)
 			}
 			else {
 				templist.enqueue(ES);
-				templist.dequeue(ES);
-				gameptr->getearth()->addEarthSoldier(ES);
+				//templist.dequeue(ES);
+				//gameptr->getearth()->addEarthSoldier(ES);
 			}
 
 		}
 	}
 	std::cout << " ]"<<std::endl;
+	for (int i = 0; i < templist.getSize(); i++) {
+		templist.dequeue(ES);
+		gameptr->getearth()->addEarthSoldier(ES);
+	}
 }
 
 

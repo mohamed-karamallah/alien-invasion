@@ -1,6 +1,6 @@
 #include "AlienArmy.h"
 
-#define MAX 100
+
 
 
 
@@ -30,10 +30,24 @@ void AlienArmy::removeAlienDrone(AlienDrones* drone1, AlienDrones* drone2)
 	else if (drone2 == nullptr) {
 		aliendroneslist.popFront(drone1);
 	}
+	else if (drone1 == drone2) {
+		aliendroneslist.popFront(drone1);
+		drone2 = nullptr;
+	}
 	else {
 		aliendroneslist.popFront(drone1);
 		aliendroneslist.popBack(drone2);
 	}
+}
+
+void AlienArmy::removeAlienDronefront(AlienDrones* drone)
+{
+	aliendroneslist.popFront(drone);
+}
+
+void AlienArmy::removeAlienDroneback(AlienDrones* drone)
+{
+	aliendroneslist.popBack(drone);
 }
 
 void AlienArmy::addAlienMonster(AlienMonsters* monster1)
@@ -43,7 +57,7 @@ void AlienArmy::addAlienMonster(AlienMonsters* monster1)
 
 }
 
-void AlienArmy::removeAlienMonster(AlienMonsters* monster1)
+void AlienArmy::removeAlienMonster(AlienMonsters*& monster1)
 {
 	alienmonstersList.removeElementrandomly(monster1);
 }
@@ -113,7 +127,11 @@ void AlienArmy::attack()
 {
 	AlienSoldiers* AS = getAS();
 	if (AS != nullptr) {
-		AS->attack(AS);
+		AS->attack();
+	}
+	AlienMonsters* AM = getAM();
+	if (AM != nullptr) {
+		AM->attack();
 	}
 }
 

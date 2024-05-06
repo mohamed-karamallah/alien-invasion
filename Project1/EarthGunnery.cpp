@@ -6,128 +6,129 @@ EarthGunnery::EarthGunnery(int _ID, string type, int _health, int _power, int _a
 	gameptr = g;
 }
 
-void EarthGunnery::attack(Unit*EG)
+void EarthGunnery::attack()
 {
+	EarthGunnery* EG = gameptr->getearth()->getEG();
 	int damage_AM;
+	//int damage_AD1;
 	int damage_AD1;
 	int damage_AD2;
-	LinkedQueue<AlienMonsters*>templistmonsters;
-	LinkedQueue<AlienDrones*>templistdrones;
+	LinkedQueue<AlienMonsters*> templistmonsters;
+	doubleEQ<AlienDrones*>templistdrones;
+	AlienDrones* AD1 = nullptr;
+	AlienDrones* AD2 = nullptr;
+	AlienMonsters* AM;
+
 	/*EarthGunnery* EG = gameptr->getearth()->getEG();*/
-	std::cout << "EG " << EG->getAttackCapacity() << " shots [ ";
+	std::cout << "EG " << EG->getID() << " shots [ ";
 	if (EG == nullptr)
 	{
 		return;
 	}
-	for (int i = 0; i < EG->getAttackCapacity(); i++)
+	int i = 1;
+	while (i <= EG->getAttackCapacity())
 	{
-		AlienMonsters* AM = gameptr->getalien()->getAM();
+		int counter = i;
+		gameptr->getalien()->removeAlienMonster(AM);
 
-		if (AM == nullptr)
+		if (AM != nullptr && i <= EG->getAttackCapacity())
 		{
-
-		}
-		else {
-			//int healthAM = AM->getHealth();
-			gameptr->getalien()->removeAlienMonster(AM);
-			
 			std::cout << AM->getID() << " ";
+			if (AM->getTa() == 0)
+			{
+				AM->setTa(gameptr->currenttimeStep);
+			}
+			AM->setDf(AM->getTa() - AM->getJoinTime());
 			damage_AM = (EG->getPower() * EG->getHealth() / 100) / sqrt(AM->getHealth());
 			AM->setHealth(AM->getHealth() - damage_AM);
 			if (AM->getHealth() <= 0)
 			{
+				AM->setTd(gameptr->currenttimeStep);
+				AM->setDd(AM->getTd() - AM->getTa());
+				AM->setDb(AM->getDf() + AM->getDd());
 				gameptr->addkilled(AM);
 			}
 
 			else
 			{
 				templistmonsters.enqueue(AM);
-				templistmonsters.dequeue(AM);
-				gameptr->getalien()->addAlienMonster(AM);
-			}
-		}
-	
-		AlienDrones* AD1 = nullptr;
-		AlienDrones* AD2=nullptr;
 
+			}
+			i++;
+		}
 		gameptr->getalien()->getAD(AD1, AD2);
-		if (AD1 == nullptr && AD2 == nullptr)
-		{
-			
+		if (AD1 == AD2) { AD2 = nullptr; }
+		if(AD1==nullptr&&AD2==nullptr){}
+		else {
+			if (AD1 == AD2 && i <= EG->getAttackCapacity()) {
+				gameptr->getalien()->removeAlienDronefront(AD1);
+				std::cout << AD1->getID() << " ";
+				damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
+				AD1->setHealth(AD1->getHealth() - damage_AD1);
+
+				if (AD1->getHealth() <= 0) {
+					gameptr->addkilled(AD1);
+				}
+				else {
+
+					templistdrones.pushFront(AD1);
+				}
+				i++;
+				continue;
+			}
+			 if (AD1 != nullptr && i <= EG->getAttackCapacity()) {
+				 gameptr->getalien()->removeAlienDronefront(AD1);
+				std::cout << AD1->getID() << " ";
+				damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
+				AD1->setHealth(AD1->getHealth() - damage_AD1);
+
+				if (AD1->getHealth() <= 0) {
+					gameptr->addkilled(AD1);
+				}
+				else {
+
+					templistdrones.pushFront(AD1);
+				}
+				i++;
+			}
+			 if (AD2 != nullptr && i <= EG->getAttackCapacity()) {
+				 gameptr->getalien()->removeAlienDroneback(AD2);
+				std::cout << AD2->getID() << " ";
+				damage_AD2 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD2->getHealth());
+				AD2->setHealth(AD2->getHealth() - damage_AD2);
+
+				if (AD2->getHealth() <= 0) {
+					gameptr->addkilled(AD2);
+				}
+				else {
+
+					templistdrones.pushFront(AD2);
+				}
+				i++;
+			}
+
 		}
-		/*else if (AD1 == AD2)
-		{
-			AD2 = nullptr;
-			gameptr->getalien()->removeAlienDrone(AD1, AD2);
-			std::cout << AD1->getID() << " ";
-			damage_AD2 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD2->getHealth());
-			AD2->setHealth(AD2->getHealth() - damage_AD2);
-
-		}*/
-
-		else if (AD1 == AD2&&AD1!=nullptr)
-		{
-			AD2 = nullptr;
-			gameptr->getalien()->removeAlienDrone(AD1, AD2);
-			std::cout << AD1->getID() << " ";
-			damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
-			AD1->setHealth(AD1->getHealth() - damage_AD1);
-			if (AD1->getHealth() <= 0)
-			{
-				gameptr->addkilled(AD1);
-			}
-
-			else
-			{
-				templistdrones.enqueue(AD1);
-				templistdrones.dequeue(AD1);
-				gameptr->getalien()->addAlienDrone(AD1);
-
-			}
-		}
-		else
-		{
-			gameptr->getalien()->removeAlienDrone(AD1, AD2);
-			std::cout << AD1->getID() << " " << AD2->getID() << " ";
-			damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
-			AD1->setHealth(AD1->getHealth() - damage_AD1);
-			damage_AD2 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD2->getHealth());
-			AD2->setHealth(AD2->getHealth() - damage_AD2);
-
-			if (AD1->getHealth() <= 0)
-			{
-				gameptr->addkilled(AD1);
-			}
-
-			else
-			{
-				templistdrones.enqueue(AD1);
-				templistdrones.dequeue(AD1);
-				gameptr->getalien()->addAlienDrone(AD1);
-
-			}
-
-			if (AD2->getHealth() <= 0)
-			{
-				gameptr->addkilled(AD2);
-
-			}
-
-			else
-			{
-				templistdrones.enqueue(AD2);
-				templistdrones.dequeue(AD2);
-				gameptr->getalien()->addAlienDrone(AD2);
-			}
-		}
+		if (i == counter) { break; }
+		
+	
 	}
 	std::cout << " ] " << std::endl;
+		for (int i = 0; i < templistmonsters.getSize(); i++) {
+			templistmonsters.dequeue(AM);
+			gameptr->getalien()->addAlienMonster(AM);
+		}
+		for (int i = 0; i < templistdrones.getSize(); i++) {
+			templistdrones.popFront(AD1);
+			gameptr->getalien()->addAlienDrone(AD1);
+		}
 }
+
+
 
 int EarthGunnery::calculatePriority()
 {
 	
-		// Calculate priority based on health and power combination
+
 		return getHealth() * getPower();
 	
 }

@@ -4,7 +4,7 @@ AlienMonsters::AlienMonsters(int _ID, string type, int _health, int _power, int 
 { gameptr = g; }
 
 
-void AlienMonsters::attack(Unit*AM)
+void AlienMonsters::attack()
 {
 }
 

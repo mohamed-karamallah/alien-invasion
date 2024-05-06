@@ -6,39 +6,53 @@ EarthSoldiers::EarthSoldiers(int _ID, string _type, int _health, int _power, int
 	gameptr = g;
 }
 
-void EarthSoldiers::attack(Unit*ES)
+void EarthSoldiers::attack()
 {
-	/*EarthSoldiers* ES = gameptr->getearth()->getES();*/
+	EarthSoldiers* ES = gameptr->getearth()->getES();
 	if (ES == nullptr) {
 		return;
 	}
 	
-	std::cout << "ES " << ES->getAttackCapacity() << " shots [ ";
+	std::cout << "ES " << ES->getID() << " shots [ ";
 	LinkedQueue<AlienSoldiers*> templist;
+	AlienSoldiers* AS;
 	for (int i = 0; i < ES->getAttackCapacity(); i++) {
-		AlienSoldiers* AS = gameptr->getalien()->getAS();
+		 AS = gameptr->getalien()->getAS();
 		if (AS == nullptr) {
 
-			return;
+		
 		}
 		else {
 			gameptr->getalien()->removeAlienSoldier(AS);
 			std::cout << AS->getID() << " ,";
+			
+			if (AS->getTa() == 0)
+			{
+				AS->setTa(gameptr->currenttimeStep);
+			}
+			AS->setDf(AS->getTa() - AS->getJoinTime());
 			int damage = (ES->getPower() * ES->getHealth() / 100) / pow(AS->getHealth(), 0.5);
 			AS->setHealth(AS->getHealth() - damage);
 			
 			if (AS->getHealth() <= 0) {
+				AS->setTd(gameptr->currenttimeStep);
+				AS->setDd(AS->getTd() - AS->getTa());
+				AS->setDb(AS->getDf() + AS->getDd());
 				gameptr->addkilled(AS);
 			}
 			else {
 				templist.enqueue(AS);
-				templist.dequeue(AS);
-				gameptr->getalien()->addAlienSoldier(AS);
+				//templist.dequeue(AS);
+				//gameptr->getalien()->addAlienSoldier(AS);
 			}
 
 		}
 	}
 	std::cout << " ] "<<std::endl;
+	for (int i = 0; i < templist.getSize(); i++) {
+		templist.dequeue(AS);
+		gameptr->getalien()->addAlienSoldier(AS);
+	}
 }
 
 void EarthSoldiers::setOriginalH(int h)
