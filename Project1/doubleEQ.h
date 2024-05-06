@@ -24,12 +24,10 @@ public:
 
 			current = current->getNext();
 		}
-		if (current != nullptr)
-		{
 			std::cout << current->getItem()->getID();
-		}
+		
 	}
-		doubleEQ() : front(nullptr), rear(nullptr) {}
+	doubleEQ() : front(nullptr), rear(nullptr) { size = 0; }
 		bool IsEmpty() {
 			if (front == nullptr && rear == nullptr)
 				return true;
@@ -70,14 +68,16 @@ public:
 			return size;
 		}
 
-		bool popFront(T & frntEntry) {
+
+		bool popFront(T& frntEntry) {
 			if (IsEmpty()) {
-		
+
 				return false;
 			}
 
 
 			if (front == rear) {
+				frntEntry = front->getItem();
 				front = rear = nullptr;
 				size--;
 			}
@@ -95,7 +95,7 @@ public:
 
 		}
 
-		bool popBack(T & frntEntry) {
+		bool popBack(T& frntEntry) {
 			if (IsEmpty()) {
 
 				return false;
@@ -103,6 +103,7 @@ public:
 
 
 			if (front == rear) {
+				frntEntry = front->getItem();
 				front = rear = nullptr;
 				size--;
 			}
@@ -121,7 +122,7 @@ public:
 		bool peekFront(T & frontdata) {
 			if (IsEmpty())
 			{
-				
+				frontdata = nullptr;
 				return false;
 			}
 			else
@@ -134,7 +135,7 @@ public:
 		bool peekBack(T & backdata) {
 			if (IsEmpty())
 			{
-				
+				backdata = nullptr;
 				return false;
 			}
 			else

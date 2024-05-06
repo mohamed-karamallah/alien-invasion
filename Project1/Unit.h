@@ -15,7 +15,7 @@ protected:
 	int AttackCapacity;
 	string Type;
 	game* gameptr ;
-	int  Ta;
+	int  Ta=0;
 	int Df;
 	int Dd;
 	int Db;
@@ -25,7 +25,7 @@ protected:
 public:
 	Unit();
 	Unit(int _ID, string _type, int _joinTime, int _health, int _power, int _attackCapacity,game*g);
-	virtual void attack(Unit*unit) = 0;
+	virtual void attack() = 0;
 	string getType();
 		int getID();
 	int getHealth();

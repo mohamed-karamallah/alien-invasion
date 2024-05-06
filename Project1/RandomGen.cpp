@@ -84,22 +84,21 @@ void RandomGen::generateAlienUnits()
             gameptr->getalien()->addAlienSoldier(AS);
             IDA++;
         }
-        else if (B <= gameptr->getASper() + gameptr->getADper()) {
-
+        else if (B <= gameptr->getASper() + gameptr->getAMper()) {
 
             int Health = getRandomInRange(gameptr->getHealthMinA(), gameptr->getHealthMaxA());
             int power = getRandomInRange(gameptr->getPowerMinA(), gameptr->getPowerMaxA());
             int capacity = getRandomInRange(gameptr->getAttackCapMinA(), gameptr->getAttackCapMaxA());
-            AlienDrones* AD = new AlienDrones(IDA, "AD", gameptr->getTime(), Health, power, capacity, gameptr);
-            gameptr->getalien()->addAlienDrone(AD);
+            AlienMonsters* AM = new AlienMonsters(IDA, "AM", gameptr->getTime(), Health, power, capacity, gameptr);
+            gameptr->getalien()->addAlienMonster(AM);
             IDA++;
         }
         else {
             int Health = getRandomInRange(gameptr->getHealthMinA(), gameptr->getHealthMaxA());
             int power = getRandomInRange(gameptr->getPowerMinA(), gameptr->getPowerMaxA());
             int capacity = getRandomInRange(gameptr->getAttackCapMinA(), gameptr->getAttackCapMaxA());
-            AlienMonsters* AM = new AlienMonsters(IDA, "AM", gameptr->getTime(), Health, power, capacity, gameptr);
-            gameptr->getalien()->addAlienMonster(AM);
+            AlienDrones* AD = new AlienDrones(IDA, "AD", gameptr->getTime(), Health, power, capacity, gameptr);
+            gameptr->getalien()->addAlienDrone(AD);
             IDA++;
         }
 

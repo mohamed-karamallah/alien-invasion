@@ -20,8 +20,10 @@ public:
 	void removeAlienSoldier(AlienSoldiers* soldier);
 	void addAlienDrone(AlienDrones* drone1);
 	void removeAlienDrone(AlienDrones* drone1, AlienDrones* drone2);
+	void removeAlienDronefront(AlienDrones* drone);
+	void removeAlienDroneback(AlienDrones* drone);
 	void addAlienMonster(AlienMonsters* monster1);
-	void removeAlienMonster(AlienMonsters* monster1);
+	void removeAlienMonster(AlienMonsters*& monster1);
 
 	void printaliensoldierlist();
 	void printaliendronelist();

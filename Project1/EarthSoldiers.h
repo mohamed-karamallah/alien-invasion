@@ -11,7 +11,7 @@ private:
 
 public:
     EarthSoldiers(int _ID, string _type, int _health, int _power, int _attackCapacity, int _jointime, game* g);
-    void attack(Unit*ES);
+    void attack();
     void setOriginalH(int h);
     int getOriginalH();
    

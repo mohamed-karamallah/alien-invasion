@@ -30,14 +30,14 @@ public:
         }
     }
 
-    void removeElementrandomly(AlienMonsters* element) {
+    void removeElementrandomly(AlienMonsters*& element) {
         if (counter > 0) {
             int index = rand() % counter;
             element = elements[index];
             elements[index] = elements[--counter];
         }
         else {
-            return;
+            element=nullptr;
         }
     }
     int getSize() {
@@ -45,10 +45,14 @@ public:
     }
 
     AlienMonsters* peek() {
-
-        
-        return elements[counter];
-
+        if (counter > 0) {
+            int index = rand() % counter;
+            
+            return elements[index];
+        }
+        else {
+            return nullptr;
+        }
     }
 
 
