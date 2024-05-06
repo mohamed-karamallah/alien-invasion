@@ -145,10 +145,10 @@ void EarthArmy::attack()
     if (EG != nullptr) {
         EG->attack();
     }
-    EarthTanks* ET = getET();
+   /* EarthTanks* ET = getET();
     if (ET != nullptr) {
         ET->attack();
-    }
+    }*/
     HealUnit* HU = getHU();
     if (HU != nullptr) {
         HU->attack();

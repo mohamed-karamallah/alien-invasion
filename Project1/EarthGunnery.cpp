@@ -28,6 +28,7 @@ void EarthGunnery::attack()
 	int i = 1;
 	while (i <= EG->getAttackCapacity())
 	{
+		AM = gameptr->getalien()->getAM();
 		int counter = i;
 		gameptr->getalien()->removeAlienMonster(AM);
 
