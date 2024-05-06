@@ -30,14 +30,26 @@ public:
         }
     }
 
-    void removeElementrandomly(AlienMonsters*& element) {
-        if (counter > 0) {
+    void removeElementrandomly(AlienMonsters* element) {
+       /* if (counter > 0) {
             int index = rand() % counter;
             element = elements[index];
             elements[index] = elements[--counter];
         }
         else {
             element=nullptr;
+        }
+        for (int i = 0; i < counter; i++) {
+            if (elements[i] == element)
+                delete elements[i];
+        }*/
+        for (int i = 0; i < counter; i++) {
+            if (elements[i] == element) {
+                 elements[i]=nullptr;
+                elements[i] = elements[counter - 1]; // Replace with last element
+                counter--; // Decrement the counter since an element is removed
+                break; // Exit loop after first occurrence is removed
+            }
         }
     }
     int getSize() {

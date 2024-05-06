@@ -57,7 +57,7 @@ void AlienArmy::addAlienMonster(AlienMonsters* monster1)
 
 }
 
-void AlienArmy::removeAlienMonster(AlienMonsters*& monster1)
+void AlienArmy::removeAlienMonster(AlienMonsters* monster1)
 {
 	alienmonstersList.removeElementrandomly(monster1);
 }
@@ -129,10 +129,10 @@ void AlienArmy::attack()
 	if (AS != nullptr) {
 		AS->attack();
 	}
-	AlienMonsters* AM = getAM();
+	/*AlienMonsters* AM = getAM();
 	if (AM != nullptr) {
 		AM->attack();
-	}
+	}*/
 }
 
 
