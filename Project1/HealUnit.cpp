@@ -38,8 +38,6 @@ void HealUnit::attack()
 			}
 			i++;
 		}
-
-
 	}
 	while (i < HU->getAttackCapacity() && !gameptr->emptyUMLT())
 	{
