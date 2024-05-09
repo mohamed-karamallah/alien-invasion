@@ -7,7 +7,7 @@
 void AlienArmy::addAlienSoldier(AlienSoldiers* soldier)
 {
 	alienSoldierslist.enqueue(soldier);
-
+	TotalcountAS++;
 
 }
 
@@ -19,7 +19,7 @@ void AlienArmy::removeAlienSoldier(AlienSoldiers* soldier)
 void AlienArmy::addAlienDrone(AlienDrones* drone1)
 {
 	aliendroneslist.pushBack(drone1);
-
+	TotalcountAD++;
 }
 
 void AlienArmy::removeAlienDrone(AlienDrones* drone1, AlienDrones* drone2)
@@ -54,7 +54,7 @@ void AlienArmy::addAlienMonster(AlienMonsters* monster1)
 {
 	// Add monsters to the BagLinkedList by calling public add function of BagLinkedList
 	alienmonstersList.addElement(monster1);
-
+	TotalcountAM++;
 }
 
 void AlienArmy::removeAlienMonster(AlienMonsters* monster1)
@@ -78,7 +78,7 @@ void AlienArmy::printaliendronelist()
 }
 void AlienArmy::printAllLists()
 {
-	cout << "======================Alien Army Alive Units============= " << endl;;
+	cout << "======================  Alien Army Alive Units  ============= " << endl;;
 	printaliensoldierlist();
 	printMonstersList();
 	printaliendronelist();
@@ -125,7 +125,8 @@ void AlienArmy::printMonstersList()
 
 void AlienArmy::attack()
 {
-	AlienSoldiers* AS = getAS();
+	AlienSoldiers* AS=nullptr;
+	 AS = getAS();
 	if (AS != nullptr) {
 		AS->attack();
 	}
@@ -133,6 +134,35 @@ void AlienArmy::attack()
 	if (AM != nullptr) {
 		AM->attack();
 	}*/
+}
+int AlienArmy::getASlistsize()
+{
+	return alienSoldierslist.getSize();
+}
+
+int AlienArmy::getADlistsize()
+{
+	return aliendroneslist.getSize();
+}
+
+int AlienArmy::getAMlistsize()
+{
+	return alienmonstersList.getSize();;
+}
+
+int AlienArmy::getASTotalcount()
+{
+	return TotalcountAS;
+}
+
+int AlienArmy::getAMTotalcount()
+{
+	return TotalcountAM;
+}
+
+int AlienArmy::getADTotalcount()
+{
+	return TotalcountAD;
 }
 
 

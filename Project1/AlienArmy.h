@@ -13,6 +13,9 @@ private:
 	LinkedQueue<AlienSoldiers*> alienSoldierslist;
 	doubleEQ<AlienDrones*> aliendroneslist;
 	ArrayofPointers alienmonstersList;
+	int TotalcountAS=0;
+	int TotalcountAM=0;
+	int TotalcountAD=0;
 
 public:
 	
@@ -33,6 +36,13 @@ public:
 	AlienMonsters* getAM();
  void printMonstersList();
  void attack();
+ int getASlistsize();
+ int getADlistsize();
+ int getAMlistsize();
+ int getASTotalcount();
+ int getAMTotalcount();
+ int getADTotalcount();
+
 };
 
 

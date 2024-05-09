@@ -65,6 +65,7 @@ void HealUnit::attack()
 			i++;
 		}
 	}
+	
 	for (int i = 0; i < tempS.getSize(); i++) {
 		tempS.dequeue(ES);
 		gameptr->addUMLS(ES,-ES->getHealth());
@@ -74,5 +75,6 @@ void HealUnit::attack()
 		gameptr->addUMLT(ET);
 	}
 
+	gameptr->addkilled(HU);
 
 }

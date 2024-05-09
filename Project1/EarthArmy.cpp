@@ -6,6 +6,7 @@ using namespace std;
 void EarthArmy::addEarthSoldier(EarthSoldiers* soldier)
 {
     earthSoldierslist.enqueue(soldier);
+    TotalcountES++;
 }
 
 
@@ -20,6 +21,7 @@ void EarthArmy::addEarthGunnery(EarthGunnery* gunnery, int priority)
 {
     
     earthGunnerylist.enqueue(gunnery, priority);
+    TotalcountEG++;
 }
 
 void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
@@ -31,6 +33,7 @@ void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
 void EarthArmy::addEarthtanks(EarthTanks* tank)
 {
     earthtankslist.push(tank);
+    TotalcountET++;
 }
 
 void EarthArmy::removeEarthtanks(EarthTanks* tank)
@@ -94,7 +97,7 @@ HealUnit* EarthArmy::getHU()
 
 void EarthArmy::printAllLists()
 {
-    cout << " ======================Earth Army Alive Units============= " << endl;
+    cout << " ======================  Earth Army Alive Units  ============= " << endl;
     printearthsoldierlist();
     printearthtankslist();
     printearthgunnerylist();
@@ -137,11 +140,13 @@ EarthTanks* EarthArmy::getET()
 
 void EarthArmy::attack()
 {
-    EarthSoldiers* ES = getES();
+    EarthSoldiers* ES = nullptr;
+     ES = getES();
     if (ES != nullptr){
         ES->attack();
 }
-    EarthGunnery* EG = getEG();
+    EarthGunnery* EG = nullptr;
+        EG=getEG();
     if (EG != nullptr) {
         EG->attack();
     }
@@ -149,10 +154,43 @@ void EarthArmy::attack()
     if (ET != nullptr) {
         ET->attack();
     }*/
-    HealUnit* HU = getHU();
+    HealUnit* HU = nullptr;
+    HU = getHU();
     if (HU != nullptr) {
         HU->attack();
     }
 }
+
+int EarthArmy::getESlistsize()
+{
+    return earthSoldierslist.getSize();
+}
+
+int EarthArmy::getEGlistsize()
+{
+    return earthGunnerylist.getSize();
+}
+
+int EarthArmy::getETlistsize()
+{
+    return earthtankslist.getSize();
+}
+
+int EarthArmy::getESTotalcount()
+{
+    return TotalcountES;
+}
+
+int EarthArmy::getEGTotalcount()
+{
+    return TotalcountEG++;
+}
+
+int EarthArmy::getETTotalcount()
+{
+    return TotalcountET++;
+}
+
+
 
 

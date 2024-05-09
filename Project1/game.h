@@ -83,6 +83,7 @@ public:
 	void setTime(int t);
 	bool emptyUMLS();
 	bool emptyUMLT();
+	void printfile();
 	
 
 };

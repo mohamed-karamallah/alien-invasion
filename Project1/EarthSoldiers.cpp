@@ -18,11 +18,7 @@ void EarthSoldiers::attack()
 	AlienSoldiers* AS;
 	for (int i = 0; i < ES->getAttackCapacity(); i++) {
 		 AS = gameptr->getalien()->getAS();
-		if (AS == nullptr) {
-
-		
-		}
-		else {
+		 if (AS!=nullptr) {
 			gameptr->getalien()->removeAlienSoldier(AS);
 			std::cout << AS->getID() << " ,";
 			
