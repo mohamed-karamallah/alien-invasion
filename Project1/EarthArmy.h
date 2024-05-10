@@ -12,9 +12,7 @@ private:
     priQueue<EarthGunnery*> earthGunnerylist;
     LinkedStack<EarthTanks*>earthtankslist;
     LinkedStack<HealUnit*>heallist;
-    int TotalcountES=0;
-    int TotalcountET=0;
-    int TotalcountEG=0;
+
 public:
 
     void addEarthSoldier(EarthSoldiers* soldier);
@@ -38,8 +36,5 @@ public:
     int getESlistsize();
     int getEGlistsize();
     int getETlistsize();
-    int getESTotalcount();
-    int getEGTotalcount();
-    int getETTotalcount();
-
+   
 };

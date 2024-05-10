@@ -39,6 +39,7 @@ void RandomGen::generateEarthUnits()
             EarthSoldiers* ES = new EarthSoldiers(IDE, "ES", gameptr->getTime(), Health, power, capacity,gameptr);
             gameptr->getearth()->addEarthSoldier(ES);
             IDE++;
+            TotalcountES++;
         }
         else if (B <= gameptr->getESper() + gameptr->getETper()) {
 
@@ -49,6 +50,7 @@ void RandomGen::generateEarthUnits()
             EarthTanks* ET = new EarthTanks(IDE, "ET", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addEarthtanks(ET);
             IDE++;
+            TotalcountET++;
         }
         else if(B<=gameptr->getESper()+gameptr->getETper()+gameptr->getEGper()) {
             int Health = getRandomInRange(gameptr->getHealthMinE(), gameptr->getHealthMaxE());
@@ -58,6 +60,7 @@ void RandomGen::generateEarthUnits()
             EarthGunnery* EG = new EarthGunnery(IDE, "EG", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addEarthGunnery(EG, priorty);
             IDE++;
+            TotalcountEG++;
         }
         else {
             int Health = getRandomInRange(gameptr->getHealthMinE(), gameptr->getHealthMaxE());
@@ -66,6 +69,9 @@ void RandomGen::generateEarthUnits()
             HealUnit* HU = new HealUnit(IDE, "HU", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addhealunit(HU);
             IDE++;
+            TotalcountHU++;
+
+
         }
 
     }
@@ -84,6 +90,7 @@ void RandomGen::generateAlienUnits()
             AlienSoldiers* AS = new AlienSoldiers(IDA, "AS", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienSoldier(AS);
             IDA++;
+            TotalcountAS++;
         }
         else if (B <= gameptr->getASper() + gameptr->getAMper()) {
 
@@ -93,6 +100,7 @@ void RandomGen::generateAlienUnits()
             AlienMonsters* AM = new AlienMonsters(IDA, "AM", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienMonster(AM);
             IDA++;
+            TotalcountAM++;
         }
         else {
             int Health = getRandomInRange(gameptr->getHealthMinA(), gameptr->getHealthMaxA());
@@ -101,9 +109,45 @@ void RandomGen::generateAlienUnits()
             AlienDrones* AD = new AlienDrones(IDA, "AD", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienDrone(AD);
             IDA++;
+            TotalcountAD++;
         }
 
     }
+}
+
+int RandomGen::getESTotalcount()
+{
+    return TotalcountES;
+}
+
+int RandomGen::getEGTotalcount()
+{
+    return TotalcountEG;
+}
+
+int RandomGen::getETTotalcount()
+{
+    return TotalcountET;
+}
+
+int RandomGen::getHUTotalcount()
+{
+    return TotalcountHU;
+}
+
+int RandomGen::getASTotalcount()
+{
+    return TotalcountAS;
+}
+
+int RandomGen::getAMTotalcount()
+{
+    return TotalcountAM;
+}
+
+int RandomGen::getADTotalcount()
+{
+    return TotalcountAD;
 }
 
 

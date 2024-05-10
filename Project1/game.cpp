@@ -247,7 +247,7 @@ void game::run()
         }*/
         
 }
-    //printfile();
+    printfile();
 }
 
 void game::setTime()
@@ -322,40 +322,36 @@ void game::printfile()
     else {
         writer << "Battle result: Loss\n\n";
     }
-    int ESdes = (earmy->getESTotalcount() - earmy->getESlistsize());
-    int EGdes = (earmy->getEGTotalcount() - earmy->getEGlistsize()) ;
-    int ETdes = (earmy->getETTotalcount() - earmy->getETlistsize()) ;
+    int ESdes = (randptr->getESTotalcount() - earmy->getESlistsize());
+    int EGdes = (randptr->getEGTotalcount() - earmy->getEGlistsize()) ;
+    int ETdes = (randptr->getETTotalcount() - earmy->getETlistsize()) ;
     
     writer << "For Earth Army :\n";
-    writer << "Total number of ES " << earmy->getESTotalcount()<<"\n";
-    writer << "Total number of ET " << earmy->getETTotalcount() << "\n";
-    writer << "Total number of EG " << earmy->getEGTotalcount()<<"\n";
-    writer << "percentage of destructed ES relative to their total " << static_cast<double>(ESdes) / earmy->getESTotalcount() * 100.0 << "\n";
-    writer << "percentage of destructed ET relative to their total " << static_cast<double>(ETdes) / earmy->getETTotalcount() * 100.0 << "\n";
-    writer << "percentage of destructed EG relative to their total " << static_cast<double>(EGdes) / earmy->getEGTotalcount() * 100.0 << "\n";
-    writer << "percentage of total destructed Earth units relative to their total " << ((static_cast<double>(ESdes) + EGdes + ETdes) / (earmy->getESTotalcount() + earmy->getEGTotalcount() + earmy->getETTotalcount())) * 100.0<<"\n";
+    writer << "Total number of ES " << randptr->getESTotalcount() <<"\n";
+    writer << "Total number of ET " << randptr->getETTotalcount() << "\n";
+    writer << "Total number of EG " << randptr->getEGTotalcount() <<"\n";
+    writer << "percentage of destructed ES relative to their total " << static_cast<double>(ESdes) / randptr->getESTotalcount() * 100.0 << "\n";
+    writer << "percentage of destructed ET relative to their total " << static_cast<double>(ETdes) / randptr->getETTotalcount() * 100.0 << "\n";
+    writer << "percentage of destructed EG relative to their total " << static_cast<double>(EGdes) / randptr->getEGTotalcount() * 100.0 << "\n";
+    writer << "percentage of total destructed Earth units relative to their total " << ((static_cast<double>(ESdes) + EGdes + ETdes) / (randptr->getESTotalcount() + randptr->getETTotalcount() + randptr->getEGTotalcount())) * 100.0<<"\n";
     writer << "Average of Df for Earth army units " << static_cast<double>(DfE) / countE << "\n";
     writer << "Average of Dd for Earth army units " << static_cast<double>(DdE) / countE << "\n";
     writer << "Average of Db for Earth army units " << static_cast<double>(DbE) / countE << "\n";
     writer << "Df/Db percentage for Earth army " << static_cast<double>(DfE) / DbE << "\n";
     writer << "Dd/Db percentage for Earth army " << static_cast<double>(DdE) / DbE << "\n";
 
-    int ASdes = (aarmy->getASTotalcount() - aarmy->getASlistsize());
-    int AMdes = (aarmy->getAMTotalcount() - aarmy->getAMlistsize());
-    int ADdes = (aarmy->getAMTotalcount() - aarmy->getAMlistsize());
+    int ASdes = (randptr->getASTotalcount() - aarmy->getASlistsize());
+    int AMdes = (randptr->getAMTotalcount() - aarmy->getAMlistsize());
+    int ADdes = (randptr->getADTotalcount() - aarmy->getADlistsize());
 
     writer << "For Alien Army :\n";
-    writer << "Total number of AS " << aarmy->getASTotalcount() << "\n";
-    writer << "Total number of AM " << aarmy->getAMTotalcount() << "\n";
-    writer << "Total number of AD " << aarmy->getADTotalcount() << "\n";
-   /* writer << aarmy->getASlistsize() << "\n";
-    writer << aarmy->getASTotalcount() << "\n";
-    writer << ASdes << "\n";
-    writer << countA << "\n";*/
-    writer << "percentage of destructed AS relative to their total " << static_cast<double>(ASdes) / aarmy->getASTotalcount() * 100.0 << "\n";
-    writer << "percentage of destructed AM relative to their total " << static_cast<double>(AMdes) / aarmy->getAMTotalcount() * 100.0 << "\n";
-    writer << "percentage of destructed AD relative to their total " << static_cast<double>(ADdes) / aarmy->getADTotalcount() * 100.0 << "\n";
-    writer << "percentage of total destructed Alien units relative to their total " << ((static_cast<double>(ASdes) + AMdes + ADdes) / (aarmy->getASTotalcount() + aarmy->getAMTotalcount() + aarmy->getADTotalcount())) * 100.0<<"\n";
+    writer << "Total number of AS " << randptr->getASTotalcount() << "\n";
+    writer << "Total number of AM " << randptr->getAMTotalcount() << "\n";
+    writer << "Total number of AD " << randptr->getADTotalcount() << "\n";
+    writer << "percentage of destructed AS relative to their total " << static_cast<double>(ASdes) / randptr->getASTotalcount() * 100.0 << "\n";
+    writer << "percentage of destructed AM relative to their total " << static_cast<double>(AMdes) / randptr->getAMTotalcount() * 100.0 << "\n";
+    writer << "percentage of destructed AD relative to their total " << static_cast<double>(ADdes) / randptr->getADTotalcount() * 100.0 << "\n";
+    writer << "percentage of total destructed Alien units relative to their total " << ((static_cast<double>(ASdes) + AMdes + ADdes) / (randptr->getASTotalcount() + randptr->getAMTotalcount() + randptr->getADTotalcount())) * 100.0<<"\n";
     writer << "Average of Df for Alien army units " << static_cast<double>(DfA) / countA << "\n";
     writer << "Average of Dd for Alien army units " << static_cast<double>(DdA) / countA << "\n";
     writer << "Average of Db for Alien army units " << static_cast<double>(DbA) / countA << "\n";

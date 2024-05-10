@@ -36,6 +36,14 @@ class RandomGen
     int AS;
     int AD;
     int AM;
+    int TotalcountES=0;
+    int TotalcountEG=0;
+    int TotalcountET=0;
+    int TotalcountHU = 0;
+    int TotalcountAS=0;
+    int TotalcountAM=0;
+    int TotalcountAD=0;
+
 
 public:
     
@@ -43,17 +51,15 @@ public:
     void generateUnits();
     void generateEarthUnits();
     void generateAlienUnits();
-    //int getRandomInt(int min, int max);
     void randaction();
-  /*  int gethealthE();
-    int getpowerE();
-    int getAttackcapeE();
-    int getRandomInRange_healthE(int min, int max);
-    int getRandomInRange_powerE(int min, int max);
-    int getRandomInRange_capacityE(int min, int max);
-    int getRandomInRange_healthA(int min, int max);
-    int getRandomInRange_powerA(int min, int max);
-    int getRandomInRange_capacityA(int min, int max);*/
+    int getESTotalcount();
+    int getEGTotalcount();
+    int getETTotalcount();
+    int getHUTotalcount();
+    int getASTotalcount();
+    int getAMTotalcount();
+    int getADTotalcount();
     int getRandomInRange(int min, int max);
+    
 
 };

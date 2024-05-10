@@ -6,7 +6,7 @@ using namespace std;
 void EarthArmy::addEarthSoldier(EarthSoldiers* soldier)
 {
     earthSoldierslist.enqueue(soldier);
-    TotalcountES++;
+
 }
 
 
@@ -21,7 +21,7 @@ void EarthArmy::addEarthGunnery(EarthGunnery* gunnery, int priority)
 {
     
     earthGunnerylist.enqueue(gunnery, priority);
-    TotalcountEG++;
+
 }
 
 void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
@@ -33,7 +33,7 @@ void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
 void EarthArmy::addEarthtanks(EarthTanks* tank)
 {
     earthtankslist.push(tank);
-    TotalcountET++;
+
 }
 
 void EarthArmy::removeEarthtanks(EarthTanks* tank)
@@ -176,20 +176,7 @@ int EarthArmy::getETlistsize()
     return earthtankslist.getSize();
 }
 
-int EarthArmy::getESTotalcount()
-{
-    return TotalcountES;
-}
 
-int EarthArmy::getEGTotalcount()
-{
-    return TotalcountEG++;
-}
-
-int EarthArmy::getETTotalcount()
-{
-    return TotalcountET++;
-}
 
 
 

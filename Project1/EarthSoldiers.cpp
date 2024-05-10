@@ -46,7 +46,8 @@ void EarthSoldiers::attack()
 		}
 	}
 	std::cout << " ] "<<std::endl;
-	for (int i = 0; i < templist.getSize(); i++) {
+	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
+	while (x != templist.getSize())  {
 		templist.dequeue(AS);
 		gameptr->getalien()->addAlienSoldier(AS);
 	}
