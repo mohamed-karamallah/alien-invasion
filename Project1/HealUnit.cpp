@@ -20,6 +20,9 @@ void HealUnit::attack()
 		 gameptr->removeUMLS(ES, -ES->getHealth());
 		if (gameptr->getTime() - ES->getTa() > 10)
 		{
+			ES->setTd(gameptr->getTime());
+			ES->setDd(ES->getTd() - ES->getTa());
+			ES->setDb(ES->getDf() + ES->getDd());
 			gameptr->addkilled(ES);
 		}
 		else {
@@ -43,6 +46,9 @@ void HealUnit::attack()
 		 ET = gameptr->getUMLET();
 		if (gameptr->getTime() - ET->getTa() > 10)
 		{
+			ET->setTd(gameptr->getTime());
+			ET->setDd(ET->getTd() - ET->getTa());
+			ET->setDb(ET->getDf() + ET->getDd());
 			gameptr->addkilled(ET);
 		}
 		else {
@@ -69,6 +75,9 @@ void HealUnit::attack()
 		tempT.dequeue(ET);
 		gameptr->addUMLT(ET);
 	}
+	gameptr->getearth()->removehealunit(HU);
+	HU = nullptr;
+	delete HU;
 
 	
 	//gameptr->addkilled(HU);
