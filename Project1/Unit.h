@@ -16,11 +16,12 @@ protected:
 	string Type;
 	game* gameptr ;
 	int  Ta=0;
-	int Df;
-	int Dd;
-	int Db;
+	int Df=0;
+	int Dd=0;
+	int Db=0;
 	int tUML;
-	int Td;
+	int Td=0;
+
 
 public:
 	Unit();

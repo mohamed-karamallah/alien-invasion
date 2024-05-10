@@ -18,24 +18,21 @@ void AlienSoldiers::attack()
 	for (int i = 0; i < AS->getAttackCapacity(); i++)
 	{
 		 ES = gameptr->getearth()->getES();
-		if (ES == nullptr) {
-
-		}
-		else {
+		 if(ES!=nullptr){
 			gameptr->getearth()->removeEarthSoldier(ES);
 			std::cout << ES->getID() << " , ";
 			ES->setOriginalH(ES->getHealth());
-			ES->settUML(gameptr->currenttimeStep);
+			ES->settUML(gameptr->getTime());
 			
 			if (ES->getTa() == 0)
 			{
-				ES->setTa(gameptr->currenttimeStep);
+				ES->setTa(gameptr->getTime());
 			}
 			ES->setDf(ES->getTa() - ES->getJoinTime());
 			int damage = (AS->getPower() * AS->getHealth() / 100) / pow(ES->getHealth(), 0.5);
 			ES->setHealth(ES->getHealth() - damage);
 			if (ES->getHealth() <= 0) {
-				ES->setTd(gameptr->currenttimeStep);
+				ES->setTd(gameptr->getTime());
 				ES->setDd(ES->getTd() - ES->getTa());
 				ES->setDb(ES->getDf() + ES->getDd());
 				gameptr->addkilled(ES);
@@ -46,14 +43,14 @@ void AlienSoldiers::attack()
 			}
 			else {
 				templist.enqueue(ES);
-				//templist.dequeue(ES);
-				//gameptr->getearth()->addEarthSoldier(ES);
+				
 			}
 
 		}
 	}
 	std::cout << " ]"<<std::endl;
-	for (int i = 0; i < templist.getSize(); i++) {
+	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
+	while (x != templist.getSize()) {
 		templist.dequeue(ES);
 		gameptr->getearth()->addEarthSoldier(ES);
 	}

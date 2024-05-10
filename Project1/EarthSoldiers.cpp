@@ -18,24 +18,21 @@ void EarthSoldiers::attack()
 	AlienSoldiers* AS;
 	for (int i = 0; i < ES->getAttackCapacity(); i++) {
 		 AS = gameptr->getalien()->getAS();
-		if (AS == nullptr) {
-
-		
-		}
-		else {
+		 if (AS!=nullptr) {
 			gameptr->getalien()->removeAlienSoldier(AS);
 			std::cout << AS->getID() << " ,";
 			
 			if (AS->getTa() == 0)
 			{
-				AS->setTa(gameptr->currenttimeStep);
+				
+				AS->setTa(gameptr->getTime());
 			}
 			AS->setDf(AS->getTa() - AS->getJoinTime());
 			int damage = (ES->getPower() * ES->getHealth() / 100) / pow(AS->getHealth(), 0.5);
 			AS->setHealth(AS->getHealth() - damage);
 			
 			if (AS->getHealth() <= 0) {
-				AS->setTd(gameptr->currenttimeStep);
+				AS->setTd(gameptr->getTime());
 				AS->setDd(AS->getTd() - AS->getTa());
 				AS->setDb(AS->getDf() + AS->getDd());
 				gameptr->addkilled(AS);
@@ -49,7 +46,8 @@ void EarthSoldiers::attack()
 		}
 	}
 	std::cout << " ] "<<std::endl;
-	for (int i = 0; i < templist.getSize(); i++) {
+	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
+	while (x != templist.getSize())  {
 		templist.dequeue(AS);
 		gameptr->getalien()->addAlienSoldier(AS);
 	}

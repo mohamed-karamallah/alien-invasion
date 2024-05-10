@@ -78,7 +78,7 @@ void AlienArmy::printaliendronelist()
 }
 void AlienArmy::printAllLists()
 {
-	cout << "======================Alien Army Alive Units============= " << endl;;
+	cout << "======================  Alien Army Alive Units  ============= " << endl;;
 	printaliensoldierlist();
 	printMonstersList();
 	printaliendronelist();
@@ -125,7 +125,8 @@ void AlienArmy::printMonstersList()
 
 void AlienArmy::attack()
 {
-	AlienSoldiers* AS = getAS();
+	AlienSoldiers* AS=nullptr;
+	 AS = getAS();
 	if (AS != nullptr) {
 		AS->attack();
 	}
@@ -134,5 +135,21 @@ void AlienArmy::attack()
 		AM->attack();
 	}*/
 }
+int AlienArmy::getASlistsize()
+{
+	return alienSoldierslist.getSize();
+}
+
+int AlienArmy::getADlistsize()
+{
+	return aliendroneslist.getSize();
+}
+
+int AlienArmy::getAMlistsize()
+{
+	return alienmonstersList.getSize();;
+}
+
+
 
 

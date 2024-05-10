@@ -12,6 +12,7 @@ private:
     priQueue<EarthGunnery*> earthGunnerylist;
     LinkedStack<EarthTanks*>earthtankslist;
     LinkedStack<HealUnit*>heallist;
+
 public:
 
     void addEarthSoldier(EarthSoldiers* soldier);
@@ -32,5 +33,8 @@ public:
     EarthGunnery* getEG();
     EarthTanks* getET();
     void attack();
-
+    int getESlistsize();
+    int getEGlistsize();
+    int getETlistsize();
+   
 };

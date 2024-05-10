@@ -14,6 +14,7 @@ private:
 	doubleEQ<AlienDrones*> aliendroneslist;
 	ArrayofPointers alienmonstersList;
 
+
 public:
 	
 	void addAlienSoldier(AlienSoldiers* soldier);
@@ -33,6 +34,11 @@ public:
 	AlienMonsters* getAM();
  void printMonstersList();
  void attack();
+ int getASlistsize();
+ int getADlistsize();
+ int getAMlistsize();
+
+
 };
 
 

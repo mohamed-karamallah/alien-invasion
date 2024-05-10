@@ -18,7 +18,8 @@ void RandomGen::generateUnits()
         generateEarthUnits();
         generateAlienUnits();
     }
-    gameptr->currenttimeStep++;
+    
+    //gameptr->setTime();
 
 }
 
@@ -38,6 +39,7 @@ void RandomGen::generateEarthUnits()
             EarthSoldiers* ES = new EarthSoldiers(IDE, "ES", gameptr->getTime(), Health, power, capacity,gameptr);
             gameptr->getearth()->addEarthSoldier(ES);
             IDE++;
+            TotalcountES++;
         }
         else if (B <= gameptr->getESper() + gameptr->getETper()) {
 
@@ -48,6 +50,7 @@ void RandomGen::generateEarthUnits()
             EarthTanks* ET = new EarthTanks(IDE, "ET", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addEarthtanks(ET);
             IDE++;
+            TotalcountET++;
         }
         else if(B<=gameptr->getESper()+gameptr->getETper()+gameptr->getEGper()) {
             int Health = getRandomInRange(gameptr->getHealthMinE(), gameptr->getHealthMaxE());
@@ -57,6 +60,7 @@ void RandomGen::generateEarthUnits()
             EarthGunnery* EG = new EarthGunnery(IDE, "EG", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addEarthGunnery(EG, priorty);
             IDE++;
+            TotalcountEG++;
         }
         else {
             int Health = getRandomInRange(gameptr->getHealthMinE(), gameptr->getHealthMaxE());
@@ -65,6 +69,9 @@ void RandomGen::generateEarthUnits()
             HealUnit* HU = new HealUnit(IDE, "HU", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getearth()->addhealunit(HU);
             IDE++;
+            TotalcountHU++;
+
+
         }
 
     }
@@ -83,6 +90,7 @@ void RandomGen::generateAlienUnits()
             AlienSoldiers* AS = new AlienSoldiers(IDA, "AS", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienSoldier(AS);
             IDA++;
+            TotalcountAS++;
         }
         else if (B <= gameptr->getASper() + gameptr->getAMper()) {
 
@@ -92,6 +100,7 @@ void RandomGen::generateAlienUnits()
             AlienMonsters* AM = new AlienMonsters(IDA, "AM", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienMonster(AM);
             IDA++;
+            TotalcountAM++;
         }
         else {
             int Health = getRandomInRange(gameptr->getHealthMinA(), gameptr->getHealthMaxA());
@@ -100,105 +109,46 @@ void RandomGen::generateAlienUnits()
             AlienDrones* AD = new AlienDrones(IDA, "AD", gameptr->getTime(), Health, power, capacity, gameptr);
             gameptr->getalien()->addAlienDrone(AD);
             IDA++;
+            TotalcountAD++;
         }
 
     }
 }
 
+int RandomGen::getESTotalcount()
+{
+    return TotalcountES;
+}
 
-//void RandomGen::randaction()
-//{
-//    int r = getRandomInRange(1, 100);
-//    if (r > 0 && r < 10)
-//    {
-//
-//        EarthSoldiers* soldier = gameptr->getearth()->getES();
-//        if (soldier == NULL)
-//            return;
-//        gameptr->getearth()->removeEarthSoldier(soldier);
-//        gameptr->getearth()->addEarthSoldier(soldier);
-//
-//
-//
-//
-//
-//    }
-//    else if (r > 10 && r < 20) {
-//
-//        EarthTanks* tank = gameptr->getearth()->getET();
-//        if (tank == NULL)
-//            return;
-//        gameptr->getearth()->removeEarthtanks(tank);
-//        gameptr->addkilled(tank);
-//
-//    }
-//    else if (r > 20 && r < 30) {
-//
-//        EarthGunnery* gunnery = gameptr->getearth()->getEG();
-//        if (gunnery == NULL)
-//            return;
-//        gameptr->getearth()->removeEarthGunnery(gunnery, 1);
-//        if (gunnery)
-//            gunnery->setHealth(0.5 * gunnery->getHealth());
-//    }
-//    /*else if (r > 30 && r < 40) {
-//
-//        AlienSoldiers* soldier = gameptr->getalien()->getAS();
-//        if (soldier == NULL)
-//            return;
-//        AlienArmy* temp[5];
-//        for (int i = 0; i < 5; i++) {
-//            gameptr->getalien()->removeAlienSoldier(soldier);
-//            if (soldier)
-//            {
-//                soldier->setHealth(0.5 * soldier->getHealth());
-//                temp[i]->addAlienSoldier(soldier);
-//                gameptr->getalien()->addAlienSoldier(soldier);
-//            }
-//        }
-//    }*/
-//    else if (r > 40 && r < 50) {
-//
-//        AlienMonsters* monster = gameptr->getalien()->getAM();
-//        if (monster == NULL)
-//            return;
-//        for (int i = 0; i < 5; i++) {
-//            gameptr->getalien()->removeAlienMonster(monster);
-//            gameptr->getalien()->addAlienMonster(monster);
-//        }
-//    }
-//    /*else if (r > 50 && r < 60) {
-//        AlienDrones* drone1=nullptr;
-//        AlienDrones* drone2=nullptr;
-//        gameptr->getalien()->getAD(drone1, drone2);
-//        for (int i = 0; i < 3; i++) {
-//            if (drone1 == nullptr||drone2==nullptr) {
-//                return;
-//            }
-//            else if (drone1 == drone2) {
-//                drone2 = nullptr;
-//                gameptr->getalien()->removeAlienDrone(drone1, drone2);
-//                gameptr->addkilled(drone1);
-//            }
-//            else if (drone1 == drone2) {
-//                drone2 = nullptr;
-//                gameptr->getalien()->removeAlienDrone(drone1, drone2);
-//                gameptr->addkilled(drone1);
-//            }
-//            else //if(drone1!=drone2){
-//            {
-//                gameptr->getalien()->removeAlienDrone(drone1, drone2);
-//                gameptr->addkilled(drone1);
-//                gameptr->addkilled(drone2);
-//
-//
-//            }
-//        }
-//    }*/
-//}*/
+int RandomGen::getEGTotalcount()
+{
+    return TotalcountEG;
+}
 
+int RandomGen::getETTotalcount()
+{
+    return TotalcountET;
+}
 
+int RandomGen::getHUTotalcount()
+{
+    return TotalcountHU;
+}
 
+int RandomGen::getASTotalcount()
+{
+    return TotalcountAS;
+}
+
+int RandomGen::getAMTotalcount()
+{
+    return TotalcountAM;
+}
+
+int RandomGen::getADTotalcount()
+{
+    return TotalcountAD;
+}
 
 int RandomGen::getRandomInRange(int min, int max)
 {
