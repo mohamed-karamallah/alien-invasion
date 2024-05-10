@@ -24,14 +24,15 @@ void EarthSoldiers::attack()
 			
 			if (AS->getTa() == 0)
 			{
-				AS->setTa(gameptr->currenttimeStep);
+				
+				AS->setTa(gameptr->getTime());
 			}
 			AS->setDf(AS->getTa() - AS->getJoinTime());
 			int damage = (ES->getPower() * ES->getHealth() / 100) / pow(AS->getHealth(), 0.5);
 			AS->setHealth(AS->getHealth() - damage);
 			
 			if (AS->getHealth() <= 0) {
-				AS->setTd(gameptr->currenttimeStep);
+				AS->setTd(gameptr->getTime());
 				AS->setDd(AS->getTd() - AS->getTa());
 				AS->setDb(AS->getDf() + AS->getDd());
 				gameptr->addkilled(AS);

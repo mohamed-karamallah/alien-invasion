@@ -22,17 +22,17 @@ void AlienSoldiers::attack()
 			gameptr->getearth()->removeEarthSoldier(ES);
 			std::cout << ES->getID() << " , ";
 			ES->setOriginalH(ES->getHealth());
-			ES->settUML(gameptr->currenttimeStep);
+			ES->settUML(gameptr->getTime());
 			
 			if (ES->getTa() == 0)
 			{
-				ES->setTa(gameptr->currenttimeStep);
+				ES->setTa(gameptr->getTime());
 			}
 			ES->setDf(ES->getTa() - ES->getJoinTime());
 			int damage = (AS->getPower() * AS->getHealth() / 100) / pow(ES->getHealth(), 0.5);
 			ES->setHealth(ES->getHealth() - damage);
 			if (ES->getHealth() <= 0) {
-				ES->setTd(gameptr->currenttimeStep);
+				ES->setTd(gameptr->getTime());
 				ES->setDd(ES->getTd() - ES->getTa());
 				ES->setDb(ES->getDf() + ES->getDd());
 				gameptr->addkilled(ES);

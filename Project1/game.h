@@ -38,13 +38,13 @@ private:
 	int HealthMaxA;
 	int AttackCapMinA;
 	int AttackCapMaxA;
-
+	int currenttimeStep ;
 
 protected:
 
 
 public:
-	int currenttimeStep=1;
+	
 	
 	game();
 	EarthArmy* getearth();
@@ -80,7 +80,7 @@ public:
 	EarthSoldiers* getUMLES();
 	EarthTanks* getUMLET();
 	void run();
-	void setTime(int t);
+	void setTime();
 	bool emptyUMLS();
 	bool emptyUMLT();
 	void printfile();

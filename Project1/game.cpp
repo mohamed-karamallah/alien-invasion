@@ -218,13 +218,13 @@ void game::run()
     readfile();
     
     int x;
-    cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
-    cin >> x;
-    for(int i=0;i<40;i++) {
-       
-        if (x == 1) {
+    //cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
+    //cin >> x;
+    for(int i=1;i<41;i++) {
+        currenttimeStep = i;
+      //  if (x == 1) {
             cout << "Current Timestep " << i << endl;;
-
+           
             randptr->generateUnits();
 
             earmy->printAllLists();
@@ -235,23 +235,24 @@ void game::run()
             earmy->attack();
             aarmy->attack();
             printkilledlist();
-            system("pause");
-        }
-        if (x == 2) {
+            //system("pause");
+        //}
+        /*if (x == 2) {
+            
             randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
         
 
-        }
+        }*/
         
 }
-    printfile();
+    //printfile();
 }
 
-void game::setTime(int t)
+void game::setTime()
 {
-    currenttimeStep = t;
+    currenttimeStep++;
 }
 
 bool game::emptyUMLS()
@@ -299,27 +300,27 @@ void game::printfile()
             DbE = DbE + unit->getDb();
             countE++;
         }
-        else {
+        else if(unit->getID()>=2000) {
             DfA = DfA + unit->getDf();
             DdA = DdA + unit->getDd();
             DbA = DbA + unit->getDb();
             countA++;
         }
-        writer << unit->getTd() << "\t\t" << unit->getID() << "\t\t" << unit->getJoinTime() << "\t\t" << unit->getDf() << "\t\t" << unit->getDd() << "\t\t" << unit->getDb()<<"\n";
+        writer << unit->getTd() << "\t\t" << unit->getID() << "\t\t" << unit->getJoinTime() << "\t\t" << unit->getDf() << "\t\t" << unit->getDd() << "\t\t" << unit->getDb()<<"\n\n";
 
 
 
     }
-    cout << endl << endl << endl;
+   
     if ((earmy->getEG() != nullptr || earmy->getES() != nullptr || earmy->getET() != nullptr) && (aarmy->getAS() != nullptr || aarmy->getAM() != nullptr||AD1!=nullptr)) 
     {
-        writer << " Battle result: Draw\n\n ";
+        writer << "Battle result: Draw\n\n ";
     }
     else if (earmy->getEG() != nullptr || earmy->getES() != nullptr || earmy->getET() != nullptr) {
-        writer << " Battle result: Win\n\n ";
+        writer << "Battle result: Win\n\n ";
     }
     else {
-        writer << " Battle result: Loss\n\n";
+        writer << "Battle result: Loss\n\n";
     }
     int ESdes = (earmy->getESTotalcount() - earmy->getESlistsize());
     int EGdes = (earmy->getEGTotalcount() - earmy->getEGlistsize()) ;
@@ -337,7 +338,7 @@ void game::printfile()
     writer << "Average of Dd for Earth army units " << static_cast<double>(DdE) / countE << "\n";
     writer << "Average of Db for Earth army units " << static_cast<double>(DbE) / countE << "\n";
     writer << "Df/Db percentage for Earth army " << static_cast<double>(DfE) / DbE << "\n";
-    writer << "Dd/Db percentage for Earth army" << static_cast<double>(DdE) / DbE << "\n";
+    writer << "Dd/Db percentage for Earth army " << static_cast<double>(DdE) / DbE << "\n";
 
     int ASdes = (aarmy->getASTotalcount() - aarmy->getASlistsize());
     int AMdes = (aarmy->getAMTotalcount() - aarmy->getAMlistsize());
@@ -347,6 +348,10 @@ void game::printfile()
     writer << "Total number of AS " << aarmy->getASTotalcount() << "\n";
     writer << "Total number of AM " << aarmy->getAMTotalcount() << "\n";
     writer << "Total number of AD " << aarmy->getADTotalcount() << "\n";
+   /* writer << aarmy->getASlistsize() << "\n";
+    writer << aarmy->getASTotalcount() << "\n";
+    writer << ASdes << "\n";
+    writer << countA << "\n";*/
     writer << "percentage of destructed AS relative to their total " << static_cast<double>(ASdes) / aarmy->getASTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed AM relative to their total " << static_cast<double>(AMdes) / aarmy->getAMTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed AD relative to their total " << static_cast<double>(ADdes) / aarmy->getADTotalcount() * 100.0 << "\n";
@@ -355,7 +360,7 @@ void game::printfile()
     writer << "Average of Dd for Alien army units " << static_cast<double>(DdA) / countA << "\n";
     writer << "Average of Db for Alien army units " << static_cast<double>(DbA) / countA << "\n";
     writer << "Df/Db percentage for Alien army " << static_cast<double>(DfA) / DbA << "\n";
-    writer << "Dd/Db percentage for Alien army" << static_cast<double>(DdA) / DbA << "\n";
+    writer << "Dd/Db percentage for Alien army " << static_cast<double>(DdA) / DbA << "\n";
 
 }
 

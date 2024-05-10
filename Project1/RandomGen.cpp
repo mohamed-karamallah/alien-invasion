@@ -18,7 +18,8 @@ void RandomGen::generateUnits()
         generateEarthUnits();
         generateAlienUnits();
     }
-    gameptr->currenttimeStep++;
+    
+    //gameptr->setTime();
 
 }
 

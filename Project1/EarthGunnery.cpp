@@ -37,14 +37,14 @@ void EarthGunnery::attack()
 			std::cout << AM->getID() << " ";
 			if (AM->getTa() == 0)
 			{
-				AM->setTa(gameptr->currenttimeStep);
+				AM->setTa(gameptr->getTime());
 			}
 			AM->setDf(AM->getTa() - AM->getJoinTime());
 			damage_AM = (EG->getPower() * EG->getHealth() / 100) / sqrt(AM->getHealth());
 			AM->setHealth(AM->getHealth() - damage_AM);
 			if (AM->getHealth() <= 0)
 			{
-				AM->setTd(gameptr->currenttimeStep);
+				AM->setTd(gameptr->getTime());
 				AM->setDd(AM->getTd() - AM->getTa());
 				AM->setDb(AM->getDf() + AM->getDd());
 				gameptr->addkilled(AM);
@@ -68,14 +68,14 @@ void EarthGunnery::attack()
 				std::cout << AD1->getID() << " ";
 				if (AD1->getTa() == 0)
 				{
-					AD1->setTa(gameptr->currenttimeStep);
+					AD1->setTa(gameptr->getTime());
 				}
 				AD1->setDf(AD1->getTa() - AD1->getJoinTime());
 				damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
 				AD1->setHealth(AD1->getHealth() - damage_AD1);
 
 				if (AD1->getHealth() <= 0) {
-					AD1->setTd(gameptr->currenttimeStep);
+					AD1->setTd(gameptr->getTime());
 					AD1->setDd(AD1->getTd() - AD1->getTa());
 					AD1->setDb(AD1->getDf() + AD1->getDd());
 					gameptr->addkilled(AD1);
@@ -92,14 +92,14 @@ void EarthGunnery::attack()
 				std::cout << AD1->getID() << " ";
 				if (AD1->getTa() == 0)
 				{
-					AD1->setTa(gameptr->currenttimeStep);
+					AD1->setTa(gameptr->getTime());
 				}
 				AD1->setDf(AD1->getTa() - AD1->getJoinTime());
 				damage_AD1 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD1->getHealth());
 				AD1->setHealth(AD1->getHealth() - damage_AD1);
 
 				if (AD1->getHealth() <= 0) {
-					AD1->setTd(gameptr->currenttimeStep);
+					AD1->setTd(gameptr->getTime());
 					AD1->setDd(AD1->getTd() - AD1->getTa());
 					AD1->setDb(AD1->getDf() + AD1->getDd());
 					gameptr->addkilled(AD1);
@@ -115,14 +115,14 @@ void EarthGunnery::attack()
 				std::cout << AD2->getID() << " ";
 				if (AD2->getTa() == 0)
 				{
-					AD2->setTa(gameptr->currenttimeStep);
+					AD2->setTa(gameptr->getTime());
 				}
 				AD2->setDf(AD2->getTa() - AD2->getJoinTime());
 				damage_AD2 = (EG->getPower() * EG->getHealth() / 100) / sqrt(AD2->getHealth());
 				AD2->setHealth(AD2->getHealth() - damage_AD2);
 
 				if (AD2->getHealth() <= 0) {
-					AD2->setTd(gameptr->currenttimeStep);
+					AD2->setTd(gameptr->getTime());
 					AD2->setDd(AD2->getTd() - AD2->getTa());
 					AD2->setDb(AD2->getDf() + AD2->getDd());
 					gameptr->addkilled(AD2);
