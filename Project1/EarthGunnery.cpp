@@ -77,7 +77,6 @@ void EarthGunnery::attack()
 				gameptr->addkilled(AD1);
 			}
 			else {
-
 				templistdrones.enqueue(AD1);
 			}
 			i++;
@@ -101,7 +100,6 @@ void EarthGunnery::attack()
 				gameptr->addkilled(AD1);
 			}
 			else {
-
 				templistdrones.enqueue(AD1);
 			}
 			i++;

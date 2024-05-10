@@ -24,13 +24,10 @@ void HealUnit::attack()
 		}
 		else {
 			int healthIMP = (Power * Health / 100) / sqrt(ES->getHealth());
-			//ES->setOriginalH(ES->getHealth());
 			ES->setHealth(ES->getHealth() + healthIMP);
 			if (ES->getHealth() < 0.2 * ES->getOriginalH())
 			{
 				tempS.enqueue(ES);
-				//gameptr->addUMLS(ES, -ES->getHealth());
-
 			}
 
 			else {
@@ -50,13 +47,11 @@ void HealUnit::attack()
 		}
 		else {
 			int healthIMP2 = (Power * Health / 100) / sqrt(ET->getHealth());
-			//ET->setOriginalH(ET->getHealth());
+			
 			ET->setHealth(ET->getHealth() + healthIMP2);
 			if (ET->getHealth() < 0.2 * ET->getOriginalH())
 			{
 				tempT.enqueue(ET);
-				//gameptr->addUMLT(ET);
-
 			}
 
 			else {
@@ -65,16 +60,17 @@ void HealUnit::attack()
 			i++;
 		}
 	}
-	
-	for (int i = 0; i < tempS.getSize(); i++) {
+	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
+	while(x!=tempS.getSize()) {
 		tempS.dequeue(ES);
 		gameptr->addUMLS(ES,-ES->getHealth());
 	}
-	for (int i = 0; i < tempT.getSize(); i++) {
+	while(x!=tempT.getSize()) {
 		tempT.dequeue(ET);
 		gameptr->addUMLT(ET);
 	}
 
+	
 	//gameptr->addkilled(HU);
 
 }

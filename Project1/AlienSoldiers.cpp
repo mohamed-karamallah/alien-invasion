@@ -43,8 +43,7 @@ void AlienSoldiers::attack()
 			}
 			else {
 				templist.enqueue(ES);
-				//templist.dequeue(ES);
-				//gameptr->getearth()->addEarthSoldier(ES);
+				
 			}
 
 		}
