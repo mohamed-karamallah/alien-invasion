@@ -7,7 +7,7 @@ game::game() {
     randptr = new RandomGen(this);
    earmy = new EarthArmy();
     aarmy = new AlienArmy();
-  
+    
    
 }
 EarthArmy* game::getearth()
@@ -216,15 +216,16 @@ EarthTanks* game::getUMLET()
 void game::run()
 {
     readfile();
-    
-    int x;
-    //cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
-    //cin >> x;
-    for(int i=1;i<41;i++) {
-        currenttimeStep = i;
-      //  if (x == 1) {
+
+
+    cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
+    cin >> mode;
+    if (mode == 1) {
+        for (int i = 1; i < 41; i++) {
+            currenttimeStep = i;
+            //  if (x == 1) {
             cout << "Current Timestep " << i << endl;;
-           
+
             randptr->generateUnits();
 
             earmy->printAllLists();
@@ -236,19 +237,23 @@ void game::run()
             aarmy->attack();
             printkilledlist();
             //system("pause");
-        //}
-        /*if (x == 2) {
-            
+        }
+    }
+    if (mode == 2) {
+        cout << "Silent Mode" << "\n" << "Simulation Starts" << "\n";
+        for (int i = 1; i < 41; i++) {
+            currenttimeStep = i;
             randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
-        
+        }
+        cout << "Simulation ends, Outputfile is created" << "\n";
+    }
 
-        }*/
-        
-}
     printfile();
 }
+   
+
 
 void game::setTime()
 {
@@ -357,7 +362,12 @@ void game::printfile()
     writer << "Average of Db for Alien army units " << static_cast<double>(DbA) / countA << "\n";
     writer << "Df/Db percentage for Alien army " << static_cast<double>(DfA) / DbA << "\n";
     writer << "Dd/Db percentage for Alien army " << static_cast<double>(DdA) / DbA << "\n";
+    
+}
 
+int game::getmode()
+{
+    return mode;
 }
 
 

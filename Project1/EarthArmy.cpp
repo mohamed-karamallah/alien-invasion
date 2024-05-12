@@ -17,15 +17,16 @@ void EarthArmy::removeEarthSoldier(EarthSoldiers* soldier)
    
 }
 
-void EarthArmy::addEarthGunnery(EarthGunnery* gunnery, int priority)
+void EarthArmy::addEarthGunnery(EarthGunnery* gunnery)
 {
-    
+    int priority = gunnery->getPower() * gunnery->getHealth();
     earthGunnerylist.enqueue(gunnery, priority);
 
 }
 
-void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
+void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery)
 {
+    int priority = gunnery->getPower() * gunnery->getHealth();
     if (!earthGunnerylist.isEmpty())
         earthGunnerylist.dequeue(gunnery, priority);
 }

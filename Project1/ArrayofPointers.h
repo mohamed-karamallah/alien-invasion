@@ -52,6 +52,7 @@ public:
             }
         }
     }
+    
     int getSize() {
         return counter;
     }

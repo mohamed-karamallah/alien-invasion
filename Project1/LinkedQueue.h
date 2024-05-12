@@ -68,9 +68,7 @@ public:
 		}
 	}*/
 	// Function to get a pointer to the front node (if any)
-		Node<T>* getFrontPtr() const {
-			return frontPtr;
-		}
+	
 
 		LinkedQueue();
 		bool isEmpty() const;

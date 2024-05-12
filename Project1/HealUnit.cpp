@@ -44,6 +44,7 @@ void HealUnit::attack()
 
 
 		 ET = gameptr->getUMLET();
+		 gameptr->removeUMLT(ET);
 		if (gameptr->getTime() - ET->getTa() > 10)
 		{
 			ET->setTd(gameptr->getTime());
@@ -66,12 +67,12 @@ void HealUnit::attack()
 			i++;
 		}
 	}
-	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
-	while(x!=tempS.getSize()) {
+	
+	while(!tempS.isEmpty()) {
 		tempS.dequeue(ES);
 		gameptr->addUMLS(ES,-ES->getHealth());
 	}
-	while(x!=tempT.getSize()) {
+	while(!tempS.isEmpty()) {
 		tempT.dequeue(ET);
 		gameptr->addUMLT(ET);
 	}
@@ -81,5 +82,6 @@ void HealUnit::attack()
 
 	
 	//gameptr->addkilled(HU);
+	
 
 }

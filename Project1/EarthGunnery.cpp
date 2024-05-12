@@ -1,7 +1,7 @@
 #include "EarthGunnery.h"
 #include"game.h"
 
-EarthGunnery::EarthGunnery(int _ID, string type, int _health, int _power, int _attackCapacity, int _jointime,game*g) : Unit(_ID, "EG", _health, _power, _attackCapacity, _jointime,g) 
+EarthGunnery::EarthGunnery(int _ID, string type, int _health, int _power, int _attackCapacity, int _jointime, game* g) : Unit(_ID, "EG", _health, _power, _attackCapacity, _jointime, g)
 {
 	gameptr = g;
 }
@@ -15,26 +15,27 @@ void EarthGunnery::attack()
 	int damage_AD2;
 	LinkedQueue<AlienMonsters*> templistmonsters;
 	LinkedQueue<AlienDrones*>templistdrones;
+	LinkedQueue<Unit*>shotlist;
 	AlienDrones* AD1 = nullptr;
 	AlienDrones* AD2 = nullptr;
 	AlienMonsters* AM;
-
-	/*EarthGunnery* EG = gameptr->getearth()->getEG();*/
-	std::cout << "EG " << EG->getID() << " shots [ ";
 	if (EG == nullptr)
 	{
 		return;
 	}
+
+	//std::cout << "EG " << EG->getID() << " shots [ ";
+
 	int i = 1;
 	while (i <= EG->getAttackCapacity())
 	{
-		AM = gameptr->getalien()->getAM();
 		int counter = i;
-		gameptr->getalien()->removeAlienMonster(AM);
+		AM = gameptr->getalien()->getAM();
+		if (AM != nullptr && i <= EG->getAttackCapacity()) {
 
-		if (AM != nullptr && i <= EG->getAttackCapacity())
-		{
-			std::cout << AM->getID() << " ";
+			gameptr->getalien()->removeAlienMonster(AM);
+			shotlist.enqueue(AM);
+			//std::cout << AM->getID() << " ";
 			if (AM->getTa() == 0)
 			{
 				AM->setTa(gameptr->getTime());
@@ -58,10 +59,11 @@ void EarthGunnery::attack()
 			i++;
 		}
 		gameptr->getalien()->getAD(AD1, AD2);
-		if (AD1 == AD2&&AD1!=nullptr&& i <= EG->getAttackCapacity()) {
+		if (AD1 == AD2 && AD1 != nullptr && i <= EG->getAttackCapacity()) {
 			AD2 = nullptr;
 			gameptr->getalien()->removeAlienDronefront(AD1);
-			std::cout << AD1->getID() << " ";
+			shotlist.enqueue(AD1);
+			//std::cout << AD1->getID() << " ";
 			if (AD1->getTa() == 0)
 			{
 				AD1->setTa(gameptr->getTime());
@@ -82,9 +84,10 @@ void EarthGunnery::attack()
 			i++;
 			continue;
 		}
-		else if (AD1 != nullptr&& i <= EG->getAttackCapacity()) {
+		else if (AD1 != nullptr && i <= EG->getAttackCapacity() && AD2 != nullptr) {
 			gameptr->getalien()->removeAlienDronefront(AD1);
-			std::cout << AD1->getID() << " ";
+			shotlist.enqueue(AD1);
+			//std::cout << AD1->getID() << " ";
 			if (AD1->getTa() == 0)
 			{
 				AD1->setTa(gameptr->getTime());
@@ -102,10 +105,11 @@ void EarthGunnery::attack()
 			else {
 				templistdrones.enqueue(AD1);
 			}
-			i++;
-			if (AD2 != nullptr&&i<=EG->getAttackCapacity()) {
+
+			if (AD2 != nullptr && i <= EG->getAttackCapacity()) {
 				gameptr->getalien()->removeAlienDroneback(AD2);
-				std::cout << AD2->getID() << " ";
+				shotlist.enqueue(AD2);
+				//std::cout << AD2->getID() << " ";
 				if (AD2->getTa() == 0)
 				{
 					AD2->setTa(gameptr->getTime());
@@ -124,33 +128,45 @@ void EarthGunnery::attack()
 
 					templistdrones.enqueue(AD2);
 				}
-				i++;
+
 			}
+			i++;
 		}
-		
+
 		if (i == counter) { break; }
 	}
-	std::cout << " ] " << std::endl;
-	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop 
-	while (x != templistmonsters.getSize())
+	//std::cout << " ] " << std::endl;
+	if (gameptr->getmode() == 1) {
+		std::cout << "EG " << EG->getID() << " shots [ ";
+		while (!shotlist.isEmpty()) {
+			Unit* unit;
+			shotlist.dequeue(unit);
+			std::cout << unit->getID();
+
+			// Check if there are more elements in the list
+			if (!shotlist.isEmpty()) {
+				std::cout << " , ";
+			}
+		}
+		std::cout << " ]" << std::endl;
+	}
+	while (!templistmonsters.isEmpty())
 	{
-			templistmonsters.dequeue(AM);
-			gameptr->getalien()->addAlienMonster(AM);
-		}
-	while(x!=templistdrones.getSize()){
-			templistdrones.dequeue(AD1);
-			gameptr->getalien()->addAlienDrone(AD1);
-		}
+		templistmonsters.dequeue(AM);
+		gameptr->getalien()->addAlienMonster(AM);
+	}
+	while (!templistdrones.isEmpty()) {
+		templistdrones.dequeue(AD1);
+		gameptr->getalien()->addAlienDrone(AD1);
+	}
 }
 
 
 
 int EarthGunnery::calculatePriority()
 {
-	
 
-		return getHealth() * getPower();
-	
+
+	return getHealth() * getPower();
+
 }
-
-

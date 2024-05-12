@@ -1,8 +1,8 @@
 Team members names and ids:
- OmniaAhmedShawky  1220004   omnia.hassan04@eng-st.cu.edu.eg
- KhalidMohamedKhalid    1220047   Khaled.Eldein03@eng-st.cu.edu.eg
- JumanaTimorMohamed    1220006    jumana.bakry04@eng-st.cu.edu.eg
- MohamedAshrafKaramallah    4230167    mohamed.karamallah031@eng-st.cu.edu.eg
+ Omnia Ahmed Shawky  1220004   omnia.hassan04@eng-st.cu.edu.eg
+ Khalid Mohamed Khalid    1220047   Khaled.Eldein03@eng-st.cu.edu.eg
+ Jumana Timor Mohamed    1220006    jumana.bakry04@eng-st.cu.edu.eg
+ Mohamed Ashraf Karamallah    4230167    mohamed.karamallah031@eng-st.cu.edu.eg
  
 
 

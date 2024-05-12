@@ -17,31 +17,29 @@ private:
 	LinkedQueue<Unit*> killedlist;
 	LinkedQueue<EarthTanks*>UMLT;
 	priQueue<EarthSoldiers*>UMLS;
-	int N;
-	int ESper;
-	int ETper;
-	int EGper;
-	int HUper;
-	int ASper;
-	int AMper;
-	int ADper;
-	int Prob;
-	int PowerMinE;
-	int PowerMaxE;
-	int HealthMinE;
-	int HealthMaxE;
-	int AttackCapMinE;
-	int AttackCapMaxE;
-	int PowerMinA;
-	int PowerMaxA;
-	int HealthMinA;
-	int HealthMaxA;
-	int AttackCapMinA;
-	int AttackCapMaxA;
-	int currenttimeStep ;
-
-protected:
-
+	int N=0;
+	int ESper=0;
+	int ETper=0;
+	int EGper=0;
+	int HUper=0;
+	int ASper=0;
+	int AMper=0;
+	int ADper=0;
+	int Prob=0;
+	int PowerMinE=0;
+	int PowerMaxE=0;
+	int HealthMinE=0;
+	int HealthMaxE=0;
+	int AttackCapMinE=0;
+	int AttackCapMaxE=0;
+	int PowerMinA=0;
+	int PowerMaxA=0;
+	int HealthMinA=0;
+	int HealthMaxA=0;
+	int AttackCapMinA=0;
+	int AttackCapMaxA=0;
+	int currenttimeStep=0 ;
+	int mode=0;
 
 public:
 	
@@ -84,6 +82,6 @@ public:
 	bool emptyUMLS();
 	bool emptyUMLT();
 	void printfile();
-	
+	int getmode();
 
 };
