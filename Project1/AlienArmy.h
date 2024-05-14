@@ -37,7 +37,7 @@ public:
  int getASlistsize();
  int getADlistsize();
  int getAMlistsize();
-
+ int getAarmysize();
 
 };
 

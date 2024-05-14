@@ -216,36 +216,72 @@ EarthTanks* game::getUMLET()
 void game::run()
 {
     readfile();
-
+    int i = 1;
 
     cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
     cin >> mode;
     if (mode == 1) {
-        for (int i = 1; i < 41; i++) {
+        for ( i ; i < 41; i++) {
             currenttimeStep = i;
-            //  if (x == 1) {
-            cout << "Current Timestep " << i << endl;;
+            
+            cout << "Current Timestep " << i << endl;
 
             randptr->generateUnits();
 
             earmy->printAllLists();
             aarmy->printAllLists();
 
-            //randptr->randaction();
+            
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
             //system("pause");
         }
+        while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
+            currenttimeStep = i;
+
+            cout << "Current Timestep " << i << endl;
+
+            //randptr->generateUnits();
+
+            earmy->printAllLists();
+            aarmy->printAllLists();
+
+
+            cout << " ================  Units fighting at current timestep  ==================== " << endl;
+            earmy->attack();
+            aarmy->attack();
+            printkilledlist();
+            i++;
+        }
+        if (earmy->getEarmysize() != 0) {
+            cout << "Earth Army won" << endl;
+        }
+        else if (aarmy->getAarmysize() != 0) {
+            cout << "Alien Army won" << endl;
+        }
+        
     }
     if (mode == 2) {
         cout << "Silent Mode" << "\n" << "Simulation Starts" << "\n";
-        for (int i = 1; i < 41; i++) {
+        for ( i ; i < 41; i++) {
             currenttimeStep = i;
+            
             randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
+        }
+        while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
+            currenttimeStep = i;
+
+            //  cout << "Current Timestep " << i << endl;
+
+            //randptr->generateUnits();
+            earmy->attack();
+            aarmy->attack();
+           
+            i++;
         }
         cout << "Simulation ends, Outputfile is created" << "\n";
     }

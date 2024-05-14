@@ -151,10 +151,10 @@ void EarthArmy::attack()
     if (EG != nullptr) {
         EG->attack();
     }
-   /* EarthTanks* ET = getET();
+    EarthTanks* ET = getET();
     if (ET != nullptr) {
         ET->attack();
-    }*/
+    }
     HealUnit* HU = nullptr;
     HU = getHU();
     if (HU != nullptr) {
@@ -175,6 +175,11 @@ int EarthArmy::getEGlistsize()
 int EarthArmy::getETlistsize()
 {
     return earthtankslist.getSize();
+}
+
+int EarthArmy::getEarmysize()
+{
+    return getESlistsize() + getEGlistsize() + getETlistsize();
 }
 
 

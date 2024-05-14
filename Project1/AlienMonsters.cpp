@@ -12,9 +12,10 @@ void AlienMonsters::attack()
     LinkedQueue<Unit*>shot;
     LinkedQueue<EarthSoldiers*>tempES;
     LinkedQueue<EarthTanks*>tempET;
-
-
-    for (int i = 0; i < AM->getAttackCapacity() / 2; i++) {
+    int i = 1;
+    while (i <= AM->getAttackCapacity())
+    {
+        int counter = i;
         ES = gameptr->getearth()->getES();
         if (ES != NULL)
         {
@@ -38,54 +39,15 @@ void AlienMonsters::attack()
             else if (ES->getHealth() > 0 && ES->getHealth() < 0.2 * ES->getOriginalH()) {
                 ES->settUML(gameptr->getTime());
 
-                gameptr->addUMLS(ES, 0);
+                gameptr->addUMLS(ES, -ES->getHealth());
             }
             else {
                 tempES.enqueue(ES);
             }
-
+            i++;
         }
-        else
-        {
-            ET = gameptr->getearth()->getET();
-
-            if (ET != NULL)
-            {
-                gameptr->getearth()->removeEarthtanks(ET);
-                shot.enqueue(ET);
-                ET->setOriginalH(ET->getHealth());
-                if (ET->getTa() == 0)
-                {
-                    ET->setTa(gameptr->getTime());
-                }
-                ET->setDf(ET->getTa() - ET->getJoinTime());
-                int damage = (AM->getPower() * AM->getHealth() / 100) / sqrt(ET->getHealth());
-                ET->setHealth(ET->getHealth() - damage);
-                if (ET->getHealth() < 0)
-                {
-                    ET->setTd(gameptr->getTime());
-                    ET->setDd(ET->getTd() - ET->getTa());
-                    ET->setDb(ET->getDf() + ET->getDd());
-                    gameptr->addkilled(ET);
-                }
-                else if (ET->getHealth() > 0 && ET->getHealth() < 0.2 * ET->getOriginalH()) {
-                    ET->settUML(gameptr->getTime());
-
-                    gameptr->addUMLT(ET);
-                }
-                else
-                {
-                    tempET.enqueue(ET);
-                }
-            }
-        }
-    }
-
-    for (int i = 0; i < AM->getAttackCapacity() / 2; i++) {
         ET = gameptr->getearth()->getET();
-
-        if (ET != NULL)
-        {
+        if(ET!=nullptr){
             gameptr->getearth()->removeEarthtanks(ET);
             shot.enqueue(ET);
             ET->setOriginalH(ET->getHealth());
@@ -112,42 +74,11 @@ void AlienMonsters::attack()
             {
                 tempET.enqueue(ET);
             }
-
+            i++;
         }
-        else
-        {
-            ES = gameptr->getearth()->getES();
-            if (ES != NULL)
-            {
-                gameptr->getearth()->removeEarthSoldier(ES);
-                shot.enqueue(ES);
-                ES->setOriginalH(ES->getHealth());
-                if (ES->getTa() == 0)
-                {
-                    ES->setTa(gameptr->getTime());
-                }
-                ES->setDf(ES->getTa() - ES->getJoinTime());
-                int damage = (AM->getPower() * AM->getHealth() / 100) / sqrt(ES->getHealth());
-                ES->setHealth(ES->getHealth() - damage);
-                if (ES->getHealth() < 0)
-                {
-                    ES->setTd(gameptr->getTime());
-                    ES->setDd(ES->getTd() - ES->getTa());
-                    ES->setDb(ES->getDf() + ES->getDd());
-                    gameptr->addkilled(ES);
-                }
-                else if (ES->getHealth() > 0 && ES->getHealth() < 0.2 * ES->getOriginalH()) {
-                    ES->settUML(gameptr->getTime());
-
-                    gameptr->addUMLS(ES, 0);
-                }
-                else {
-                    tempES.enqueue(ES);
-                }
-            }
-        }
+        if (i == counter) { break; }
     }
-
+       
 
     while (!tempES.isEmpty())
     {

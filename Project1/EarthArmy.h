@@ -36,5 +36,5 @@ public:
     int getESlistsize();
     int getEGlistsize();
     int getETlistsize();
-   
+    int getEarmysize();
 };

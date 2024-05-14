@@ -159,6 +159,11 @@ int AlienArmy::getAMlistsize()
 	return alienmonstersList.getSize();;
 }
 
+int AlienArmy::getAarmysize()
+{
+	return getASlistsize() + getADlistsize() + getAMlistsize();
+}
+
 
 
 

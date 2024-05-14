@@ -14,73 +14,75 @@ void HealUnit::attack()
 	EarthSoldiers* ES;
 	EarthTanks* ET;
 	int i = 0;
-	while (i < HU->getAttackCapacity() && !gameptr->emptyUMLS()) {
-
-		 ES = gameptr->getUMLES();
-		 gameptr->removeUMLS(ES, -ES->getHealth());
-		if (gameptr->getTime() - ES->getTa() > 10)
-		{
-			ES->setTd(gameptr->getTime());
-			ES->setDd(ES->getTd() - ES->getTa());
-			ES->setDb(ES->getDf() + ES->getDd());
-			gameptr->addkilled(ES);
-		}
-		else {
-			int healthIMP = (Power * Health / 100) / sqrt(ES->getHealth());
-			ES->setHealth(ES->getHealth() + healthIMP);
-			if (ES->getHealth() < 0.2 * ES->getOriginalH())
-			{
-				tempS.enqueue(ES);
-			}
-
-			else {
-				gameptr->getearth()->addEarthSoldier(ES);
-			}
-			i++;
-		}
-	}
-	while (i < HU->getAttackCapacity() && !gameptr->emptyUMLT())
-	{
-
-
-		 ET = gameptr->getUMLET();
-		 gameptr->removeUMLT(ET);
-		if (gameptr->getTime() - ET->getTa() > 10)
-		{
-			ET->setTd(gameptr->getTime());
-			ET->setDd(ET->getTd() - ET->getTa());
-			ET->setDb(ET->getDf() + ET->getDd());
-			gameptr->addkilled(ET);
-		}
-		else {
-			int healthIMP2 = (Power * Health / 100) / sqrt(ET->getHealth());
-			
-			ET->setHealth(ET->getHealth() + healthIMP2);
-			if (ET->getHealth() < 0.2 * ET->getOriginalH())
-			{
-				tempT.enqueue(ET);
-			}
-
-			else {
-				gameptr->getearth()->addEarthtanks(ET);
-			}
-			i++;
-		}
-	}
 	
-	while(!tempS.isEmpty()) {
-		tempS.dequeue(ES);
-		gameptr->addUMLS(ES,-ES->getHealth());
-	}
-	while(!tempS.isEmpty()) {
-		tempT.dequeue(ET);
-		gameptr->addUMLT(ET);
-	}
-	gameptr->getearth()->removehealunit(HU);
-	HU = nullptr;
-	delete HU;
+	if (!gameptr->emptyUMLS() || !gameptr->emptyUMLT()) {
+		while (i < HU->getAttackCapacity() && !gameptr->emptyUMLS()) {
 
-	
+			ES = gameptr->getUMLES();
+			gameptr->removeUMLS(ES, -ES->getHealth());
+			if (gameptr->getTime() - ES->getTa() > 10)
+			{
+				ES->setTd(gameptr->getTime());
+				ES->setDd(ES->getTd() - ES->getTa());
+				ES->setDb(ES->getDf() + ES->getDd());
+				gameptr->addkilled(ES);
+			}
+			else {
+				int healthIMP = (Power * Health / 100) / sqrt(ES->getHealth());
+				ES->setHealth(ES->getHealth() + healthIMP);
+				if (ES->getHealth() < 0.2 * ES->getOriginalH())
+				{
+					tempS.enqueue(ES);
+				}
+
+				else {
+					gameptr->getearth()->addEarthSoldier(ES);
+				}
+				i++;
+			}
+		}
+		while (i < HU->getAttackCapacity() && !gameptr->emptyUMLT())
+		{
+
+
+			ET = gameptr->getUMLET();
+			gameptr->removeUMLT(ET);
+			if (gameptr->getTime() - ET->getTa() > 10)
+			{
+				ET->setTd(gameptr->getTime());
+				ET->setDd(ET->getTd() - ET->getTa());
+				ET->setDb(ET->getDf() + ET->getDd());
+				gameptr->addkilled(ET);
+			}
+			else {
+				int healthIMP2 = (Power * Health / 100) / sqrt(ET->getHealth());
+
+				ET->setHealth(ET->getHealth() + healthIMP2);
+				if (ET->getHealth() < 0.2 * ET->getOriginalH())
+				{
+					tempT.enqueue(ET);
+				}
+
+				else {
+					gameptr->getearth()->addEarthtanks(ET);
+				}
+				i++;
+			}
+		}
+
+		while (!tempS.isEmpty()) {
+			tempS.dequeue(ES);
+			gameptr->addUMLS(ES, -ES->getHealth());
+		}
+		while (!tempS.isEmpty()) {
+			tempT.dequeue(ET);
+			gameptr->addUMLT(ET);
+		}
+		gameptr->getearth()->removehealunit(HU);
+		HU = nullptr;
+		delete HU;
+
+	}
 	//gameptr->addkilled(HU);
 	
 
