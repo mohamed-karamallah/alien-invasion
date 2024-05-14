@@ -246,11 +246,12 @@ void game::run()
             randptr->generateUnits();
             earmy->printAllLists();
             aarmy->printAllLists();
-
+            //system("pause");
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
+            
             if(currenttimeStep==500){
                 cout << "Draw"<<endl;
                 break;
@@ -283,7 +284,11 @@ void game::run()
             randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
-           
+            if (currenttimeStep == 500) {
+                cout << "Draw" << endl;
+                break;
+
+            }
             i++;
         }
         cout << "Simulation ends, Outputfile is created" << "\n";
@@ -374,6 +379,7 @@ void game::printfile()
     writer << "Total number of ES " << randptr->getESTotalcount() <<"\n";
     writer << "Total number of ET " << randptr->getETTotalcount() << "\n";
     writer << "Total number of EG " << randptr->getEGTotalcount() <<"\n";
+    writer << "Total number of HU " << randptr->getHUTotalcount() << "\n";
     writer << "percentage of destructed ES relative to their total " << static_cast<double>(ESdes) / randptr->getESTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed ET relative to their total " << static_cast<double>(ETdes) / randptr->getETTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed EG relative to their total " << static_cast<double>(EGdes) / randptr->getEGTotalcount() * 100.0 << "\n";

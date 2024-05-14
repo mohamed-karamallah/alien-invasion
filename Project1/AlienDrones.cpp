@@ -82,11 +82,7 @@ void AlienDrones::attack()
 		}
 
 	}
-	while (!templist.isEmpty())
-	{
-		templist.dequeue(EG);
-		gameptr->getearth()->addEarthGunnery(EG);
-	}
+	
 	if (gameptr->getmode() == 1) {
 	std::cout << "AD " << AD1->getID() << " shots [ ";
 	
@@ -167,6 +163,11 @@ void AlienDrones::attack()
 
 			}
 		}
+	}
+	while (!templist.isEmpty())
+	{
+		templist.dequeue(EG);
+		gameptr->getearth()->addEarthGunnery(EG);
 	}
 	while (!tempET.isEmpty())
 	{
