@@ -14,13 +14,12 @@ void HealUnit::attack()
 	EarthSoldiers* ES;
 	EarthTanks* ET;
 	int i = 0;
-	
 	if (!gameptr->emptyUMLS() || !gameptr->emptyUMLT()) {
 		while (i < HU->getAttackCapacity() && !gameptr->emptyUMLS()) {
 
 			ES = gameptr->getUMLES();
 			gameptr->removeUMLS(ES, -ES->getHealth());
-			if (gameptr->getTime() - ES->getTa() > 10)
+			if (gameptr->getTime() - ES->gettUML() > 10)
 			{
 				ES->setTd(gameptr->getTime());
 				ES->setDd(ES->getTd() - ES->getTa());
@@ -47,7 +46,7 @@ void HealUnit::attack()
 
 			ET = gameptr->getUMLET();
 			gameptr->removeUMLT(ET);
-			if (gameptr->getTime() - ET->getTa() > 10)
+			if (gameptr->getTime() - ET->gettUML() > 10)
 			{
 				ET->setTd(gameptr->getTime());
 				ET->setDd(ET->getTd() - ET->getTa());

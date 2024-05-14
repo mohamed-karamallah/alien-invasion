@@ -214,7 +214,7 @@ public:
 		}*/
 		while (current->getNext()!=NULL)
 		{
-			std::cout << current->getItem()->getID() << ", ";;
+			std::cout << current->getItem()->getID() << ", ";
 
 
 			current = current->getNext();

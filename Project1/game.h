@@ -40,7 +40,6 @@ private:
 	int AttackCapMaxA=0;
 	int currenttimeStep=0 ;
 	int mode=0;
-
 public:
 	
 	

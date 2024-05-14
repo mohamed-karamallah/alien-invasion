@@ -215,6 +215,7 @@ EarthTanks* game::getUMLET()
 
 void game::run()
 {
+   
     readfile();
     int i = 1;
 
@@ -222,10 +223,9 @@ void game::run()
     cin >> mode;
     if (mode == 1) {
         for ( i ; i < 41; i++) {
-            currenttimeStep = i;
-            
-            cout << "Current Timestep " << i << endl;
 
+            currenttimeStep = i;
+            cout << "Current Timestep " << i << endl;
             randptr->generateUnits();
 
             earmy->printAllLists();
@@ -243,22 +243,25 @@ void game::run()
 
             cout << "Current Timestep " << i << endl;
 
-            //randptr->generateUnits();
-
+            randptr->generateUnits();
             earmy->printAllLists();
             aarmy->printAllLists();
-
 
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
-            i++;
+            if(currenttimeStep==500){
+                cout << "Draw"<<endl;
+                break;
+
+            }
+           i++;
         }
-        if (earmy->getEarmysize() != 0) {
+        if (earmy->getEarmysize() != 0&&currenttimeStep<500) {
             cout << "Earth Army won" << endl;
         }
-        else if (aarmy->getAarmysize() != 0) {
+        else if (aarmy->getAarmysize() != 0&&currenttimeStep<500) {
             cout << "Alien Army won" << endl;
         }
         
@@ -277,7 +280,7 @@ void game::run()
 
             //  cout << "Current Timestep " << i << endl;
 
-            //randptr->generateUnits();
+            randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
            
@@ -352,7 +355,7 @@ void game::printfile()
 
 
     }
-   
+
     if ((earmy->getEG() != nullptr || earmy->getES() != nullptr || earmy->getET() != nullptr) && (aarmy->getAS() != nullptr || aarmy->getAM() != nullptr||AD1!=nullptr)) 
     {
         writer << "Battle result: Draw\n\n ";
@@ -405,6 +408,7 @@ int game::getmode()
 {
     return mode;
 }
+
 
 
 
