@@ -230,12 +230,13 @@ void game::run()
 
             earmy->printAllLists();
             aarmy->printAllLists();
-
+            
             
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
+            printUML();
             //system("pause");
         }
         while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
@@ -251,6 +252,7 @@ void game::run()
             earmy->attack();
             aarmy->attack();
             printkilledlist();
+            printUML();
             
             if(currenttimeStep==500){
                 cout << "Draw"<<endl;
@@ -384,6 +386,7 @@ void game::printfile()
     writer << "percentage of destructed ET relative to their total " << static_cast<double>(ETdes) / randptr->getETTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed EG relative to their total " << static_cast<double>(EGdes) / randptr->getEGTotalcount() * 100.0 << "\n";
     writer << "percentage of total destructed Earth units relative to their total " << ((static_cast<double>(ESdes) + EGdes + ETdes) / (randptr->getESTotalcount() + randptr->getETTotalcount() + randptr->getEGTotalcount())) * 100.0<<"\n";
+    writer << "percentage of healed units relative to total earth units " << (gethealedunits() / (static_cast<double>(randptr->getESTotalcount()) + randptr->getETTotalcount() + randptr->getEGTotalcount())) * 100.0<<"\n";
     writer << "Average of Df for Earth army units " << static_cast<double>(DfE) / countE << "\n";
     writer << "Average of Dd for Earth army units " << static_cast<double>(DdE) / countE << "\n";
     writer << "Average of Db for Earth army units " << static_cast<double>(DbE) / countE << "\n";
@@ -413,6 +416,25 @@ void game::printfile()
 int game::getmode()
 {
     return mode;
+}
+
+void game::printUML()
+{
+    cout << UMLS.getSize() + UMLT.getSize();
+    cout << " UML[";
+    UMLS.print();
+    UMLT.print();
+    cout << " ]"<<endl;
+}
+
+void game::sethealedunits()
+{
+    healedunits++;
+}
+
+int game::gethealedunits()
+{
+    return healedunits;
 }
 
 

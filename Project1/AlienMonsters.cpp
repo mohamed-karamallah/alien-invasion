@@ -29,7 +29,7 @@ void AlienMonsters::attack()
             ES->setDf(ES->getTa() - ES->getJoinTime());
             int damage = (AM->getPower() * AM->getHealth() / 100) / sqrt(ES->getHealth());
             ES->setHealth(ES->getHealth() - damage);
-            if (ES->getHealth() < 0)
+            if (ES->getHealth() <= 0)
             {
                 ES->setTd(gameptr->getTime());
                 ES->setDd(ES->getTd() - ES->getTa());
@@ -58,7 +58,7 @@ void AlienMonsters::attack()
             ET->setDf(ET->getTa() - ET->getJoinTime());
             int damage = (AM->getPower() * AM->getHealth() / 100) / sqrt(ET->getHealth());
             ET->setHealth(ET->getHealth() - damage);
-            if (ET->getHealth() < 0)
+            if (ET->getHealth() <= 0)
             {
                 ET->setTd(gameptr->getTime());
                 ET->setDd(ET->getTd() - ET->getTa());

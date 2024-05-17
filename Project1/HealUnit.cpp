@@ -36,6 +36,7 @@ void HealUnit::attack()
 
 				else {
 					gameptr->getearth()->addEarthSoldier(ES);
+					gameptr->sethealedunits();
 				}
 				i++;
 			}
@@ -64,6 +65,7 @@ void HealUnit::attack()
 
 				else {
 					gameptr->getearth()->addEarthtanks(ET);
+					gameptr->sethealedunits();
 				}
 				i++;
 			}
@@ -73,16 +75,17 @@ void HealUnit::attack()
 			tempS.dequeue(ES);
 			gameptr->addUMLS(ES, -ES->getHealth());
 		}
-		while (!tempS.isEmpty()) {
+		while (!tempT.isEmpty()) {
 			tempT.dequeue(ET);
 			gameptr->addUMLT(ET);
 		}
 		gameptr->getearth()->removehealunit(HU);
-		HU = nullptr;
 		delete HU;
+		HU = nullptr;
+		
 
 	}
-	//gameptr->addkilled(HU);
+
 	
 
 }

@@ -40,6 +40,7 @@ private:
 	int AttackCapMaxA=0;
 	int currenttimeStep=0 ;
 	int mode=0;
+	int healedunits = 0;
 public:
 	
 	
@@ -82,5 +83,8 @@ public:
 	bool emptyUMLT();
 	void printfile();
 	int getmode();
+	void printUML();
+	void sethealedunits();
+	int gethealedunits();
 
 };

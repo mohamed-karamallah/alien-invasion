@@ -35,7 +35,7 @@ void AlienDrones::attack()
 			EG->setDf(EG->getTa() - EG->getJoinTime());
 			int damage = (AD1->getPower() * AD1->getHealth() / 100) / sqrt(EG->getHealth());
 			EG->setHealth(EG->getHealth() - damage);
-			if (EG->getHealth() < 0)
+			if (EG->getHealth() <= 0)
 			{
 				EG->setTd(gameptr->getTime());
 				EG->setDd(EG->getTd() - EG->getTa());
@@ -62,7 +62,7 @@ void AlienDrones::attack()
 				ET->setDf(ET->getTa() - ET->getJoinTime());
 				int damage = (AD1->getPower() * AD1->getHealth() / 100) / sqrt(ET->getHealth());
 				ET->setHealth(ET->getHealth() - damage);
-				if (ET->getHealth() < 0)
+				if (ET->getHealth() <= 0)
 				{
 					ET->setTd(gameptr->getTime());
 					ET->setDd(ET->getTd() - ET->getTa());
@@ -118,7 +118,7 @@ void AlienDrones::attack()
 			ET->setDf(ET->getTa() - ET->getJoinTime());
 			int damage = (AD2->getPower() * AD2->getHealth() / 100) / sqrt(ET->getHealth());
 			ET->setHealth(ET->getHealth() - damage);
-			if (ET->getHealth() < 0)
+			if (ET->getHealth() <= 0)
 			{
 				ET->setTd(gameptr->getTime());
 				ET->setDd(ET->getTd() - ET->getTa());
@@ -149,7 +149,7 @@ void AlienDrones::attack()
 				EG->setDf(EG->getTa() - EG->getJoinTime());
 				int damage = (AD2->getPower() * AD2->getHealth() / 100) / sqrt(EG->getHealth());
 				EG->setHealth(EG->getHealth() - damage);
-				if (EG->getHealth() < 0)
+				if (EG->getHealth() <= 0)
 				{
 					EG->setTd(gameptr->getTime());
 					EG->setDd(EG->getTd() - EG->getTa());

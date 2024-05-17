@@ -55,7 +55,7 @@ void EarthTanks::attack()
 			}
 			i++;
 		}
-		if (gameptr->getearth()->getESlistsize() < 0.3 * gameptr->getalien()->getASlistsize() && gameptr->getearth()->getESlistsize() < 0.8 * gameptr->getalien()->getASlistsize())
+		if ((gameptr->getearth()->getESlistsize() < 0.3 * gameptr->getalien()->getASlistsize() || gameptr->getearth()->getESlistsize() < 0.8 * gameptr->getalien()->getASlistsize())&&i<ET->getAttackCapacity())
 		{
 			AS = gameptr->getalien()->getAS();
 			if (AS != nullptr) {
