@@ -1,0 +1,243 @@
+Td		ID		Tj		Df		Dd		Db
+5		2002		2		0		3		3
+
+5		2005		2		0		3		3
+
+7		2009		4		0		3		3
+
+7		2006		2		0		5		5
+
+7		2013		4		0		3		3
+
+7		2003		2		0		5		5
+
+8		2000		2		2		4		6
+
+8		2012		4		0		4		4
+
+8		2007		4		0		4		4
+
+8		2011		4		0		4		4
+
+8		2014		5		0		3		3
+
+9		2001		2		2		5		7
+
+9		2016		5		0		4		4
+
+9		2023		6		0		3		3
+
+9		2015		5		0		4		4
+
+10		2004		2		2		6		8
+
+10		2010		4		0		6		6
+
+10		2021		6		0		4		4
+
+10		2024		6		0		4		4
+
+10		2027		6		0		4		4
+
+11		2020		5		1		5		6
+
+11		2029		9		0		2		2
+
+12		2008		4		0		8		8
+
+12		2032		9		0		3		3
+
+12		2030		9		0		3		3
+
+14		2049		12		0		2		2
+
+14		2034		9		0		5		5
+
+14		2031		9		0		5		5
+
+15		2017		5		0		10		10
+
+15		2022		6		1		8		9
+
+15		2052		12		0		3		3
+
+15		2050		12		0		3		3
+
+15		2041		10		0		5		5
+
+15		2061		13		0		2		2
+
+16		2035		10		0		6		6
+
+16		2055		12		0		4		4
+
+16		2037		10		2		4		6
+
+17		2018		5		1		11		12
+
+17		2019		5		1		11		12
+
+17		2058		13		0		4		4
+
+17		2047		11		0		6		6
+
+18		2060		13		0		5		5
+
+19		2051		12		0		7		7
+
+20		2026		6		1		13		14
+
+20		2065		17		0		3		3
+
+20		2054		12		2		6		8
+
+21		2042		11		2		8		10
+
+21		2043		11		2		8		10
+
+21		2044		11		2		8		10
+
+21		2069		17		0		4		4
+
+21		2063		17		0		4		4
+
+21		2053		12		4		5		9
+
+21		2068		17		0		4		4
+
+21		2062		13		3		5		8
+
+22		2067		17		0		5		5
+
+23		2025		6		1		16		17
+
+23		2036		10		1		12		13
+
+23		2039		10		2		11		13
+
+23		2040		10		2		11		13
+
+24		2074		21		0		3		3
+
+24		2075		21		0		3		3
+
+25		2045		11		2		12		14
+
+25		2028		9		2		14		16
+
+26		2033		9		2		15		17
+
+26		2038		10		2		14		16
+
+27		2056		13		2		12		14
+
+27		2057		13		2		12		14
+
+27		2046		11		2		14		16
+
+27		2048		11		3		13		16
+
+29		2078		26		0		3		3
+
+29		2080		26		0		3		3
+
+29		2083		26		0		3		3
+
+29		2082		26		0		3		3
+
+31		2070		21		2		8		10
+
+31		2073		21		3		7		10
+
+31		2076		21		3		7		10
+
+31		2059		13		3		15		18
+
+31		2085		28		0		3		3
+
+31		2089		28		0		3		3
+
+31		2087		28		0		3		3
+
+32		2066		17		2		13		15
+
+32		2071		21		3		8		11
+
+32		2084		28		0		4		4
+
+33		2064		17		2		14		16
+
+34		2072		21		3		10		13
+
+34		2077		26		1		7		8
+
+35		2079		26		1		8		9
+
+36		2081		26		2		8		10
+
+36		2086		28		2		6		8
+
+36		2088		28		2		6		8
+
+36		2090		28		2		6		8
+
+36		2096		33		0		3		3
+
+36		2095		33		0		3		3
+
+36		2103		34		0		2		2
+
+36		2091		33		0		3		3
+
+36		2101		34		0		2		2
+
+37		2092		33		0		4		4
+
+38		2093		33		1		4		5
+
+38		2094		33		1		4		5
+
+38		2097		33		0		5		5
+
+38		2100		34		0		4		4
+
+38		2104		34		0		4		4
+
+39		2098		34		1		4		5
+
+40		2110		37		0		3		3
+
+40		2111		37		0		3		3
+
+40		2109		37		0		3		3
+
+40		2108		37		0		3		3
+
+Battle result: Draw
+
+ For Earth Army :
+Total number of ES 12
+Total number of ET 39
+Total number of EG 62
+percentage of destructed ES relative to their total 0
+percentage of destructed ET relative to their total 79.4872
+percentage of destructed EG relative to their total 96.7742
+percentage of total destructed Earth units relative to their total 80.531
+Average of Df for Earth army units -nan(ind)
+Average of Dd for Earth army units -nan(ind)
+Average of Db for Earth army units -nan(ind)
+Df/Db percentage for Earth army -nan(ind)
+Dd/Db percentage for Earth army -nan(ind)
+For Alien Army :
+Total number of AS 52
+Total number of AM 32
+Total number of AD 35
+percentage of destructed AS relative to their total 84.6154
+percentage of destructed AM relative to their total 90.625
+percentage of destructed AD relative to their total 97.1429
+percentage of total destructed Alien units relative to their total 89.916
+Average of Df for Alien army units 0.794393
+Average of Dd for Alien army units 5.98131
+Average of Db for Alien army units 6.7757
+Df/Db percentage for Alien army 0.117241
+Dd/Db percentage for Alien army 0.882759

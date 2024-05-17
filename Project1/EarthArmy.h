@@ -17,8 +17,8 @@ public:
 
     void addEarthSoldier(EarthSoldiers* soldier);
     void removeEarthSoldier(EarthSoldiers* soldier);
-    void addEarthGunnery(EarthGunnery* gunnery1, int priority);
-    void removeEarthGunnery(EarthGunnery* gunnery, int priority);
+    void addEarthGunnery(EarthGunnery* gunnery1);
+    void removeEarthGunnery(EarthGunnery* gunnery);
     void addEarthtanks(EarthTanks* tank);
     void removeEarthtanks(EarthTanks* tank);
     void printearthsoldierlist();
@@ -36,5 +36,5 @@ public:
     int getESlistsize();
     int getEGlistsize();
     int getETlistsize();
-   
+    int getEarmysize();
 };

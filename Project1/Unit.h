@@ -8,18 +8,18 @@ class game;
 class Unit
 {
 protected:
-	int ID;
-	int JoinTime;
-	int Health;
-	int Power;
-	int AttackCapacity;
-	string Type;
-	game* gameptr ;
+	int ID=0;
+	int JoinTime=0;
+	int Health=0;
+	int Power=0;
+	int AttackCapacity=0;
+	string Type="";
+	game* gameptr=nullptr ;
 	int  Ta=0;
 	int Df=0;
 	int Dd=0;
 	int Db=0;
-	int tUML;
+	int tUML=0;
 	int Td=0;
 
 

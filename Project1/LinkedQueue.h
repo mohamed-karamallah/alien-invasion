@@ -68,9 +68,7 @@ public:
 		}
 	}*/
 	// Function to get a pointer to the front node (if any)
-		Node<T>* getFrontPtr() const {
-			return frontPtr;
-		}
+	
 
 		LinkedQueue();
 		bool isEmpty() const;
@@ -216,7 +214,7 @@ public:
 		}*/
 		while (current->getNext()!=NULL)
 		{
-			std::cout << current->getItem()->getID() << ", ";;
+			std::cout << current->getItem()->getID() << ", ";
 
 
 			current = current->getNext();

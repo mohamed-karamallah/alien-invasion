@@ -56,9 +56,8 @@ void RandomGen::generateEarthUnits()
             int Health = getRandomInRange(gameptr->getHealthMinE(), gameptr->getHealthMaxE());
             int power = getRandomInRange(gameptr->getPowerMinE(), gameptr->getPowerMaxE());
             int capacity = getRandomInRange(gameptr->getAttackCapMinE(), gameptr->getAttackCapMaxE());
-            int priorty = Health * power;
             EarthGunnery* EG = new EarthGunnery(IDE, "EG", gameptr->getTime(), Health, power, capacity, gameptr);
-            gameptr->getearth()->addEarthGunnery(EG, priorty);
+            gameptr->getearth()->addEarthGunnery(EG);
             IDE++;
             TotalcountEG++;
         }

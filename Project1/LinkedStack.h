@@ -33,8 +33,8 @@ bool LinkedStack<T>::isEmpty() const {
     return top == nullptr;
 }
 template <typename T>
-bool LinkedStack<T>::push(const T& element) { // Implement push function
-    Node<T>* newnodeptr = new Node<T>(element); //leh 3mlha kda?
+bool LinkedStack<T>::push(const T& element) { 
+    Node<T>* newnodeptr = new Node<T>(element); 
     if (newnodeptr == nullptr) {
         return false;
     }

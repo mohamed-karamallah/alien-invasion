@@ -125,19 +125,28 @@ void AlienArmy::printMonstersList()
 
 void AlienArmy::attack()
 {
-	AlienSoldiers* AS=nullptr;
+	AlienSoldiers* AS = nullptr;
 	 AS = getAS();
 	if (AS != nullptr) {
 		AS->attack();
 	}
-	/*AlienMonsters* AM = getAM();
+	AlienMonsters* AM = nullptr;
+		AM=getAM();
 	if (AM != nullptr) {
 		AM->attack();
-	}*/
+	}
+	AlienDrones* AD1 = nullptr;
+	AlienDrones* AD2 = nullptr;
+	getAD(AD1, AD2);
+	if (AD1 && AD2 && AD1 != AD2) {
+		AD1->attack();
+	}
+
 }
 int AlienArmy::getASlistsize()
 {
 	return alienSoldierslist.getSize();
+
 }
 
 int AlienArmy::getADlistsize()
@@ -148,6 +157,11 @@ int AlienArmy::getADlistsize()
 int AlienArmy::getAMlistsize()
 {
 	return alienmonstersList.getSize();;
+}
+
+int AlienArmy::getAarmysize()
+{
+	return getASlistsize() + getADlistsize() + getAMlistsize();
 }
 
 

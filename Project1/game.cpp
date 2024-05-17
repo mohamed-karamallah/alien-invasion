@@ -7,7 +7,7 @@ game::game() {
     randptr = new RandomGen(this);
    earmy = new EarthArmy();
     aarmy = new AlienArmy();
-  
+    
    
 }
 EarthArmy* game::getearth()
@@ -215,40 +215,89 @@ EarthTanks* game::getUMLET()
 
 void game::run()
 {
+   
     readfile();
-    
-    int x;
-    //cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
-    //cin >> x;
-    for(int i=1;i<41;i++) {
-        currenttimeStep = i;
-      //  if (x == 1) {
-            cout << "Current Timestep " << i << endl;;
-           
+    int i = 1;
+
+    cout << "welcome!\nselect a simulation mode : \n1)interactive mode\n2)silent mode\n";
+    cin >> mode;
+    if (mode == 1) {
+        for ( i ; i < 41; i++) {
+
+            currenttimeStep = i;
+            cout << "Current Timestep " << i << endl;
             randptr->generateUnits();
 
             earmy->printAllLists();
             aarmy->printAllLists();
 
-            //randptr->randaction();
+            
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
             //system("pause");
-        //}
-        /*if (x == 2) {
+        }
+        while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
+            currenttimeStep = i;
+
+            cout << "Current Timestep " << i << endl;
+
+            randptr->generateUnits();
+            earmy->printAllLists();
+            aarmy->printAllLists();
+            //system("pause");
+            cout << " ================  Units fighting at current timestep  ==================== " << endl;
+            earmy->attack();
+            aarmy->attack();
+            printkilledlist();
+            
+            if(currenttimeStep==500){
+                cout << "Draw"<<endl;
+                break;
+
+            }
+           i++;
+        }
+        if (earmy->getEarmysize() != 0&&currenttimeStep<500) {
+            cout << "Earth Army won" << endl;
+        }
+        else if (aarmy->getAarmysize() != 0&&currenttimeStep<500) {
+            cout << "Alien Army won" << endl;
+        }
+        
+    }
+    if (mode == 2) {
+        cout << "Silent Mode" << "\n" << "Simulation Starts" << "\n";
+        for ( i ; i < 41; i++) {
+            currenttimeStep = i;
             
             randptr->generateUnits();
             earmy->attack();
             aarmy->attack();
-        
+        }
+        while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
+            currenttimeStep = i;
 
-        }*/
-        
-}
+            //  cout << "Current Timestep " << i << endl;
+
+            randptr->generateUnits();
+            earmy->attack();
+            aarmy->attack();
+            if (currenttimeStep == 500) {
+                cout << "Draw" << endl;
+                break;
+
+            }
+            i++;
+        }
+        cout << "Simulation ends, Outputfile is created" << "\n";
+    }
+
     printfile();
 }
+   
+
 
 void game::setTime()
 {
@@ -311,7 +360,7 @@ void game::printfile()
 
 
     }
-   
+
     if ((earmy->getEG() != nullptr || earmy->getES() != nullptr || earmy->getET() != nullptr) && (aarmy->getAS() != nullptr || aarmy->getAM() != nullptr||AD1!=nullptr)) 
     {
         writer << "Battle result: Draw\n\n ";
@@ -330,6 +379,7 @@ void game::printfile()
     writer << "Total number of ES " << randptr->getESTotalcount() <<"\n";
     writer << "Total number of ET " << randptr->getETTotalcount() << "\n";
     writer << "Total number of EG " << randptr->getEGTotalcount() <<"\n";
+    writer << "Total number of HU " << randptr->getHUTotalcount() << "\n";
     writer << "percentage of destructed ES relative to their total " << static_cast<double>(ESdes) / randptr->getESTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed ET relative to their total " << static_cast<double>(ETdes) / randptr->getETTotalcount() * 100.0 << "\n";
     writer << "percentage of destructed EG relative to their total " << static_cast<double>(EGdes) / randptr->getEGTotalcount() * 100.0 << "\n";
@@ -357,8 +407,14 @@ void game::printfile()
     writer << "Average of Db for Alien army units " << static_cast<double>(DbA) / countA << "\n";
     writer << "Df/Db percentage for Alien army " << static_cast<double>(DfA) / DbA << "\n";
     writer << "Dd/Db percentage for Alien army " << static_cast<double>(DdA) / DbA << "\n";
-
+    
 }
+
+int game::getmode()
+{
+    return mode;
+}
+
 
 
 

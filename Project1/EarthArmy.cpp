@@ -17,15 +17,16 @@ void EarthArmy::removeEarthSoldier(EarthSoldiers* soldier)
    
 }
 
-void EarthArmy::addEarthGunnery(EarthGunnery* gunnery, int priority)
+void EarthArmy::addEarthGunnery(EarthGunnery* gunnery)
 {
-    
+    int priority = gunnery->getPower() * gunnery->getHealth();
     earthGunnerylist.enqueue(gunnery, priority);
 
 }
 
-void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery, int priority)
+void EarthArmy::removeEarthGunnery(EarthGunnery* gunnery)
 {
+    int priority = gunnery->getPower() * gunnery->getHealth();
     if (!earthGunnerylist.isEmpty())
         earthGunnerylist.dequeue(gunnery, priority);
 }
@@ -150,10 +151,10 @@ void EarthArmy::attack()
     if (EG != nullptr) {
         EG->attack();
     }
-   /* EarthTanks* ET = getET();
+    EarthTanks* ET = getET();
     if (ET != nullptr) {
         ET->attack();
-    }*/
+    }
     HealUnit* HU = nullptr;
     HU = getHU();
     if (HU != nullptr) {
@@ -174,6 +175,11 @@ int EarthArmy::getEGlistsize()
 int EarthArmy::getETlistsize()
 {
     return earthtankslist.getSize();
+}
+
+int EarthArmy::getEarmysize()
+{
+    return getESlistsize() + getEGlistsize() + getETlistsize();
 }
 
 

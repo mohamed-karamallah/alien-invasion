@@ -1,29 +1,31 @@
 #include "AlienSoldiers.h"
 #include"game.h"
-AlienSoldiers::AlienSoldiers(int _ID, string type, int _health, int _power, int _attackCapacity, int _jointime, game* g) : Unit(_ID, "AS", _health, _power, _attackCapacity, _jointime, g) 
+AlienSoldiers::AlienSoldiers(int _ID, string type, int _health, int _power, int _attackCapacity, int _jointime, game* g) : Unit(_ID, "AS", _health, _power, _attackCapacity, _jointime, g)
 {
-	gameptr = g; }
+	gameptr = g;
+}
 
 void AlienSoldiers::attack()
 {
 	AlienSoldiers* AS = gameptr->getalien()->getAS();
 
-	
+
 	if (AS == nullptr) {
 		return;
 	}
-	std::cout << "AS " << AS->getID() << " shots [ ";
+	//std::cout << "AS " << AS->getID() << " shots [ ";
 	LinkedQueue<EarthSoldiers*>templist;
+	LinkedQueue<Unit*>shotlist;
 	EarthSoldiers* ES;
 	for (int i = 0; i < AS->getAttackCapacity(); i++)
 	{
-		 ES = gameptr->getearth()->getES();
-		 if(ES!=nullptr){
+		ES = gameptr->getearth()->getES();
+		if (ES != nullptr) {
 			gameptr->getearth()->removeEarthSoldier(ES);
-			std::cout << ES->getID() << " , ";
+			shotlist.enqueue(ES);
+			//std::cout << ES->getID() << " , ";
 			ES->setOriginalH(ES->getHealth());
-			ES->settUML(gameptr->getTime());
-			
+
 			if (ES->getTa() == 0)
 			{
 				ES->setTa(gameptr->getTime());
@@ -38,24 +40,39 @@ void AlienSoldiers::attack()
 				gameptr->addkilled(ES);
 			}
 			else if (ES->getHealth() > 0 && ES->getHealth() < 0.2 * ES->getOriginalH()) {
+				ES->settUML(gameptr->getTime());
 				int pri = -ES->getHealth();
 				gameptr->addUMLS(ES, pri);
 			}
 			else {
 				templist.enqueue(ES);
-				
+
 			}
 
 		}
+		else if (ES == nullptr) {
+			break;
+		}
 	}
-	std::cout << " ]"<<std::endl;
-	int x = 0;//as the size of the lists decrease by 1 every dequeue we cant make for loop
-	while (x != templist.getSize()) {
+
+	//std::cout << " ]"<<std::endl;
+	while (!templist.isEmpty()) {
 		templist.dequeue(ES);
 		gameptr->getearth()->addEarthSoldier(ES);
 	}
+	if (gameptr->getmode() == 1) {
+		std::cout << "AS " << AS->getID() << " shots [ ";
+		while (!shotlist.isEmpty()) {
+			Unit* unit;
+			shotlist.dequeue(unit);
+			std::cout << unit->getID();
+
+			// Check if there are more elements in the list
+			if (!shotlist.isEmpty()) {
+				std::cout << " , ";
+			}
+		}
+		std::cout << " ]" << std::endl;
+	}
+
 }
-
-
-
-
