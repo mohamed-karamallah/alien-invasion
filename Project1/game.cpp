@@ -237,7 +237,7 @@ void game::run()
             aarmy->attack();
             printkilledlist();
             printUML();
-            //system("pause");
+            system("pause");
         }
         while (earmy->getEarmysize() != 0 && aarmy->getAarmysize() != 0) {
             currenttimeStep = i;
@@ -247,13 +247,13 @@ void game::run()
             randptr->generateUnits();
             earmy->printAllLists();
             aarmy->printAllLists();
-            //system("pause");
+            
             cout << " ================  Units fighting at current timestep  ==================== " << endl;
             earmy->attack();
             aarmy->attack();
             printkilledlist();
             printUML();
-            
+            system("pause");
             if(currenttimeStep==500){
                 cout << "Draw"<<endl;
                 break;
