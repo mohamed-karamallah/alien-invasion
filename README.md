@@ -55,11 +55,6 @@ Project1/
     └── Node.h              # Node implementations
 ```
 
-## Requirements
-
-- Visual Studio 2019 or later
-- C++17 or later
-- Windows operating system
 
 ## Building the Project
 
@@ -80,9 +75,7 @@ The game uses text files for input and output:
 - Input files contain initial game state and parameters
 - Output files contain battle results and statistics
 
-## Contributing
 
-Feel free to fork this repository and submit pull requests for any improvements.
 
 ## License
 
